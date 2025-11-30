@@ -1,203 +1,81 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer id="contact" className="bg-card border-t border-border">
-      <div className="container mx-auto px-3 sm:px-4 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {/* Company Info */}
+    <footer className="bg-[#0f1419] text-gray-400 py-12 border-t border-[#2d3748]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* Contact Info */}
           <div>
-            <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-base sm:text-lg">
-                  C
-                </span>
-              </div>
-              <span className="text-foreground font-bold text-lg sm:text-xl">
-                CryptoEx
-              </span>
-            </div>
-            <p className="text-muted-foreground mb-3 sm:mb-4 text-xs sm:text-base">
-              Your trusted platform for secure and efficient cryptocurrency
-              trading.
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wide">
+              CONTACT
+            </h4>
+            <p className="text-sm mb-2">Gold Town Ltd,</p>
+            <p className="text-sm mb-2">25 Temple Rd,</p>
+            <p className="text-sm mb-4">London, SW7 2NS</p>
+            <p className="text-sm mb-2 font-semibold">0333 903 2040</p>
+            <p className="text-sm flex items-center gap-2">
+              <span>📧</span>
+              <a
+                href="mailto:info@webuygoldnow.co.uk"
+                className="hover:text-[#fbbf24] transition"
+              >
+                info@webuygoldnow.co.uk
+              </a>
             </p>
-            <div className="flex gap-2">
-              <Button
-                size="icon"
-                variant="secondary"
-                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full"
-              >
-                <Facebook className="h-3 w-3 sm:h-4 sm:w-4" />
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full"
-              >
-                <Twitter className="h-3 w-3 sm:h-4 sm:w-4" />
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full"
-              >
-                <Instagram className="h-3 w-3 sm:h-4 sm:w-4" />
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full"
-              >
-                <Linkedin className="h-3 w-3 sm:h-4 sm:w-4" />
-              </Button>
-            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Logo and Description */}
+          <div className="flex flex-col items-center justify-start md:justify-center">
+            <div className="flex items-center gap-1 mb-4">
+              <div className="bg-white px-3 py-1 rounded text-xs font-bold">
+                <span className="text-black">WE BUY</span>
+              </div>
+              <div className="bg-[#fbbf24] px-2 py-1 rounded text-xs font-bold text-black">
+                GOLD
+              </div>
+              <div className="bg-white px-3 py-1 rounded text-xs font-bold">
+                <span className="text-black">NOW</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 text-center">
+              Your trusted gold buyers since 2010
+            </p>
+          </div>
+
+          {/* Links */}
           <div>
-            <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              Quick Links
-            </h3>
-            <ul className="space-y-1.5 sm:space-y-2">
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wide">
+              LINKS
+            </h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  About Us
+                <a href="#" className="hover:text-[#fbbf24] transition">
+                  Home
                 </a>
               </li>
               <li>
-                <a
-                  href="#features"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Features
+                <a href="#" className="hover:text-[#fbbf24] transition">
+                  News
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Pricing
+                <a href="#" className="hover:text-[#fbbf24] transition">
+                  Sell Today
                 </a>
               </li>
               <li>
-                <a
-                  href="#team"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Team
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Blog
+                <a href="#" className="hover:text-[#fbbf24] transition">
+                  Contact
                 </a>
               </li>
             </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              Support
-            </h3>
-            <ul className="space-y-1.5 sm:space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs sm:text-base"
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              Newsletter
-            </h3>
-            <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
-              Subscribe to get updates on market trends and exclusive offers.
-            </p>
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="bg-secondary border-border text-xs sm:text-sm"
-              />
-              <Button className="bg-primary hover:bg-primary/90 h-9 sm:h-10 w-9 sm:w-10 p-0">
-                <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
-              </Button>
-            </div>
-            <div className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2">
-              <div className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
-                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mt-0.5 shrink-0" />
-                <span>123 Crypto Street, Digital City, DC 10001</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-                <Phone className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-border pt-6 sm:pt-8 text-center text-xs sm:text-sm text-muted-foreground">
-          <p>&copy; 2024 CryptoEx. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-[#2d3748] pt-8 text-center text-xs text-gray-500">
+          <p>&copy; 2025 We Buy Gold Now. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

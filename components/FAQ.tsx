@@ -1,79 +1,90 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+"use client";
 
-const faqs = [
-  {
-    question: "Why do we use the Euro exchange?",
-    answer:
-      "We use the Euro exchange to provide our European customers with seamless trading experiences and reduced conversion fees. This helps maintain competitive rates and faster transactions.",
-  },
-  {
-    question: "Why is trading in Bitcoin safe?",
-    answer:
-      "Bitcoin trading is safe on our platform because we use bank-level encryption, cold storage for the majority of funds, and implement strict security protocols including two-factor authentication and withdrawal confirmations.",
-  },
-  {
-    question: "Do I need to submit documents?",
-    answer:
-      "Basic trading requires minimal documentation. However, for higher trading limits and enhanced features, we may request identity verification documents in compliance with regulatory requirements.",
-  },
-  {
-    question: "What is the charge amount?",
-    answer:
-      "Our platform charges competitive fees starting from 0.1% per transaction. The exact fee depends on your trading volume, account tier, and payment method. Check our fee schedule for detailed information.",
-  },
-  {
-    question: "How do we handle the currency exchange?",
-    answer:
-      "Currency exchanges are handled through our automated system that connects to multiple liquidity providers, ensuring you get the best rates available in real-time with minimal slippage.",
-  },
-  {
-    question: "How do we do the rate of the exchange?",
-    answer:
-      "Our exchange rates are determined by real-time market data from multiple sources, ensuring fair and competitive pricing. Rates are updated every second to reflect current market conditions.",
-  },
-];
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
-const FAQ = () => {
+export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "How do I know I'm getting a fair price?",
+      answer:
+        "Our prices are based on live market rates and are always competitive. We use certified scales and have expert appraisers on staff.",
+    },
+    {
+      question: "What types of gold do you accept?",
+      answer:
+        "We accept all types of gold including bars, coins, jewelry, and collectibles in any condition.",
+    },
+    {
+      question: "How quickly will I get paid?",
+      answer:
+        "You can receive payment immediately in cash, or via bank transfer within 24 hours of valuation.",
+    },
+    {
+      question: "Is the process secure?",
+      answer:
+        "Yes, we maintain the highest security standards and all transactions are fully confidential.",
+    },
+    {
+      question: "Do I need identification?",
+      answer:
+        "For transactions over £15,000, we require valid identification as per UK regulations. No ID needed for smaller amounts.",
+    },
+    {
+      question: "Can I change my mind after selling?",
+      answer:
+        "We allow a 48-hour cooling-off period for all transactions, giving you time to reconsider.",
+    },
+    {
+      question: "What payment methods do you offer?",
+      answer:
+        "We offer cash payments, bank transfers, and cheques depending on your preference and transaction amount.",
+    },
+    {
+      question: "Do you buy damaged or broken gold jewelry?",
+      answer:
+        "Yes, we buy all gold including damaged, broken, or worn jewelry. We pay by weight regardless of condition.",
+    },
+  ];
+
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 px-3 sm:px-4">
-      <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">
-            {" "}
-            What&apos;s Know About Us
-          </h2>
-          <p className="text-muted-foreground text-sm sm:text-base px-4">
-            Find answers to commonly asked questions about our platform and
-            services.
-          </p>
-        </div>
+    <section className="bg-white py-16 md:py-24">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-gray-600 text-center mb-12">
+          Everything you need to know about selling your gold
+        </p>
 
-        <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+        <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`item-${index}`}
-              className="bg-card border border-border rounded-lg px-4 sm:px-6"
-            >
-              <AccordionTrigger className="hover:no-underline py-3 sm:py-4">
-                <span className="text-left font-semibold text-sm sm:text-base">
+            <div key={index} className="bg-gray-50 rounded-lg overflow-hidden">
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-100 transition"
+              >
+                <span className="text-left font-semibold text-black">
                   {faq.question}
                 </span>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-xs sm:text-sm">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+                <ChevronDown
+                  size={20}
+                  className={`shrink-0 text-[#fbbf24] transition-transform ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {openIndex === index && (
+                <div className="px-6 py-4 bg-white border-t border-gray-200">
+                  <p className="text-gray-600">{faq.answer}</p>
+                </div>
+              )}
+            </div>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );
-};
-
-export default FAQ;
+}

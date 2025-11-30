@@ -1,88 +1,67 @@
-import { Card } from "@/components/ui/card";
-import { Star } from "lucide-react";
-import Image from "next/image";
+export default function Testimonials() {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      location: "Client - London",
+      text: "I was nervous about selling my grandmother's jewelry, but the team made the process so easy. They were professional, offered the highest rate, and I walked out with cash highly recommended!",
+      initials: "SJ",
+      color: "bg-red-500",
+    },
+    {
+      name: "Michael Davies",
+      location: "Client - Manchester",
+      text: "Their gold buyers in the UK compared prices from several places and these guys offered the highest rate. The process was quick, transparent, and completely hassle-free.",
+      initials: "MD",
+      color: "bg-yellow-500",
+    },
+    {
+      name: "Emma Wilson",
+      location: "Client - Birmingham",
+      text: "Excellent service from start to finish. They explained everything clearly, gave me a fair valuation, and paid immediately. I wouldn't go anywhere else to sell my gold.",
+      initials: "EW",
+      color: "bg-orange-500",
+    },
+  ];
 
-const testimonials = [
-  {
-    name: "Alex Thompson",
-    role: "Crypto Trader",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-    content:
-      "CryptoEx has completely transformed my trading experience. The platform is fast, secure, and incredibly user-friendly!",
-    rating: 5,
-  },
-  {
-    name: "Maria Garcia",
-    role: "Investor",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
-    content:
-      "I've tried many exchanges, but CryptoEx stands out with its excellent customer support and low fees.",
-    rating: 5,
-  },
-  {
-    name: "David Chen",
-    role: "Business Owner",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-    content:
-      "The mobile app is outstanding! I can manage my portfolio on the go with ease and confidence.",
-    rating: 5,
-  },
-];
-
-const Testimonials = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4 bg-secondary/30">
-      <div className="container mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">
-            {`  What's Say Happy Client`}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-4">
-            {` Don't just take our word for it - hear from our satisfied clients
-            who have experienced the CryptoEx difference.`}
-          </p>
-        </div>
+    <section className="bg-[#0f1419] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+          What Say Happy Client
+        </h2>
+        <p className="text-gray-400 text-center mb-16">
+          Hear from our satisfied customers who trusted us with their precious
+          metals
+        </p>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="p-4 sm:p-6 bg-card border-border">
-              <div className="flex gap-1 mb-3 sm:mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 sm:h-5 sm:w-5 fill-primary text-primary"
-                  />
-                ))}
-              </div>
-              <p className="text-muted-foreground mb-4 sm:mb-6 italic text-xs sm:text-base">
-                {"{testimonial.content}"}
-              </p>
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-secondary">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={1080}
-                    height={720}
-                    className="w-full h-full object-cover"
-                    unoptimized
-                  />
+            <div
+              key={index}
+              className="bg-[#1a1f2e] rounded-lg p-6 border border-[#2d3748]"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div
+                  className={`w-12 h-12 rounded-full ${testimonial.color} flex items-center justify-center`}
+                >
+                  <span className="text-white font-bold text-lg">
+                    {testimonial.initials}
+                  </span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-muted-foreground">
-                    {testimonial.role}
+                  <p className="text-white font-semibold">{testimonial.name}</p>
+                  <p className="text-gray-400 text-sm">
+                    {testimonial.location}
                   </p>
                 </div>
               </div>
-            </Card>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {testimonial.text}
+              </p>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

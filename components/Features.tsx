@@ -1,74 +1,83 @@
-import { Shield, Headphones, Clock } from "lucide-react";
-import featuresIllustration from "@/public/features-illustration.png";
 import Image from "next/image";
 
-const features = [
-  {
-    icon: Shield,
-    title: "100% Secure",
-    description:
-      "Your assets are protected with bank-level security and encryption.",
-  },
-  {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Our expert team is available round the clock to assist you.",
-  },
-  {
-    icon: Clock,
-    title: "Fast & Easy",
-    description:
-      "Quick transactions with an intuitive interface for seamless trading.",
-  },
-];
-
-const Features = () => {
+export default function Features() {
   return (
-    <section id="features" className="py-12 sm:py-16 md:py-20 px-3 sm:px-4">
-      <div className="container mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">
-            Awesome Features For{" "}
-            <span className="text-primary">Crypto Exchange</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-4">
-            Experience the best in class cryptocurrency trading with our
-            advanced features designed for both beginners and professionals.
-          </p>
-        </div>
+    <section className="bg-black py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Title */}
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+          The Fastest, Safest Way to Sell Gold
+          <br />& Silver in the UK
+        </h2>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="space-y-4 sm:space-y-6 md:space-y-8">
-            {features.map((feature, index) => (
-              <div key={index} className="flex gap-3 sm:gap-4">
-                <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <feature.icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm sm:text-base">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-20">
+          {/* Left: Gold Products Image */}
+          <div className="flex justify-center">
+            <Image
+              width={720}
+              height={480}
+              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&h=600&fit=crop"
+              alt="Gold and Silver Coins"
+              className="max-w-sm w-full h-auto"
+            />
           </div>
 
-          <div className="relative order-first lg:order-last">
-            <Image
-              src={featuresIllustration}
-              width={1080}
-              height={720}
-              alt="Features Illustration"
-              className="w-full h-auto max-w-sm mx-auto lg:max-w-full"
-            />
+          {/* Right: Features List */}
+          <div className="space-y-8">
+            {/* Feature 1 */}
+            <div className="flex gap-6 items-start">
+              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#fbbf24] rounded-full" />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                  Safty Exchange
+                </h3>
+                <p className="text-gray-400 text-sm md:text-base">
+                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
+                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
+                  Sit Amet Harpening
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="flex gap-6 items-start">
+              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#fbbf24] rounded-full" />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                  Private Security
+                </h3>
+                <p className="text-gray-400 text-sm md:text-base">
+                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
+                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
+                  Sit Amet Harpening
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="flex gap-6 items-start">
+              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#fbbf24] rounded-full" />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                  Easy To Use
+                </h3>
+                <p className="text-gray-400 text-sm md:text-base">
+                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
+                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
+                  Sit Amet Harpening
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Features;
+}

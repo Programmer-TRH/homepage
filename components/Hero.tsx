@@ -1,113 +1,43 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ArrowDownUp } from "lucide-react";
-import heroIllustration from "@/public/hero-illustration.png";
-import Image from "next/image";
-
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-3 sm:px-4">
-      <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="space-y-4 sm:space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              You Can Exchange <span className="text-primary">Coins</span> Here
-            </h1>
-            <p className="text-muted-foreground text-base sm:text-lg">
-              Trade cryptocurrencies with confidence. Fast, secure, and
-              easy-to-use platform for all your crypto needs.
-            </p>
+    <section className="relative w-full h-screen min-h-[600px] md:min-h-[700px] mt-15 md:mt-17 overflow-hidden flex items-center">
+      {/* Background Image - Cityscape */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1400&h=900&fit=crop)",
+          opacity: 0.8,
+        }}
+      />
 
-            <Card className="p-4 sm:p-6 bg-card border-border">
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-                  <div className="flex-1">
-                    <label className="text-xs sm:text-sm text-muted-foreground mb-2 block">
-                      You Pay
-                    </label>
-                    <div className="flex gap-2">
-                      <Select defaultValue="btc">
-                        <SelectTrigger className="w-24 sm:w-28 bg-secondary border-border text-sm">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="btc">BTC</SelectItem>
-                          <SelectItem value="eth">ETH</SelectItem>
-                          <SelectItem value="usdt">USDT</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Input
-                        type="number"
-                        placeholder="0.00"
-                        className="bg-secondary border-border text-sm"
-                        defaultValue="1.5"
-                      />
-                    </div>
-                  </div>
+      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-transparent" />
 
-                  <div className="flex sm:pt-6 justify-center sm:block">
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="rounded-full h-9 w-9"
-                    >
-                      <ArrowDownUp className="h-4 w-4" />
-                    </Button>
-                  </div>
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+        <div className="max-w-2xl">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#fbbf24] mb-4 leading-tight">
+            Sell Your Gold
+          </h1>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">
+            For Instant Cash
+          </h2>
+          <p className="text-gray-300 mb-8 text-base md:text-lg max-w-xl">
+            Turn your gold into cash today, safe and fast with honest valuations
+            from trusted experts.
+          </p>
 
-                  <div className="flex-1">
-                    <label className="text-xs sm:text-sm text-muted-foreground mb-2 block">
-                      You Get
-                    </label>
-                    <div className="flex gap-2">
-                      <Select defaultValue="eth">
-                        <SelectTrigger className="w-24 sm:w-28 bg-secondary border-border text-sm">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="eth">ETH</SelectItem>
-                          <SelectItem value="btc">BTC</SelectItem>
-                          <SelectItem value="usdt">USDT</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Input
-                        type="number"
-                        placeholder="0.00"
-                        className="bg-secondary border-border text-sm"
-                        defaultValue="24.8"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-10 sm:h-12 text-sm sm:text-base">
-                  Start Exchange
-                </Button>
-              </div>
-            </Card>
-          </div>
-
-          <div className="relative order-first lg:order-last">
-            <Image
-              src={heroIllustration}
-              width={1080}
-              height={720}
-              alt="Cryptocurrency Exchange Illustration"
-              className="w-full h-auto max-w-md mx-auto lg:max-w-full"
-            />
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="bg-[#fbbf24] text-black px-8 py-3 rounded-full font-semibold hover:bg-[#f59e0b] transition inline-flex items-center justify-center">
+              Get a quote online
+            </button>
+            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition inline-flex items-center justify-center">
+              Drop off your Gold
+            </button>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

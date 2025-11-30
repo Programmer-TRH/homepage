@@ -1,97 +1,60 @@
-import { Card } from "@/components/ui/card";
-import {
-  Smartphone,
-  Lock,
-  TrendingUp,
-  Zap,
-  Users,
-  Award,
-  CreditCard,
-  BarChart3,
-} from "lucide-react";
+export default function SpecialFeatures() {
+  const features = [
+    {
+      title: "Industry Leaders",
+      description:
+        "We have been buying gold and silver for over 15 years, establishing ourselves as one of the UK's most trusted precious metal buyers.",
+    },
+    {
+      title: "Best Market Rates",
+      description:
+        "Our prices are based on live market rates, ensuring you always receive a fair and competitive price for your precious metals.",
+    },
+    {
+      title: "Secure & Confidential",
+      description:
+        "All transactions are conducted with the highest level of security and confidentiality. Your privacy is our priority.",
+    },
+    {
+      title: "Instant Payment",
+      description:
+        "Walk in and walk out with cash in hand, or receive payment via bank transfer within 24 hours of valuation.",
+    },
+    {
+      title: "No Hidden Fees",
+      description:
+        "What we quote is what you get. No deductions, no surprises, no hidden charges. Complete transparency guaranteed.",
+    },
+    {
+      title: "Expert Appraisers",
+      description:
+        "Our certified experts have decades of combined experience in precious metals valuation and authentication.",
+    },
+  ];
 
-const features = [
-  {
-    icon: Smartphone,
-    title: "Mobile Apps",
-    description:
-      "Trade on the go with our powerful mobile applications for iOS and Android.",
-  },
-  {
-    icon: Lock,
-    title: "Safe & Secure",
-    description:
-      "Your assets are protected with industry-leading security measures.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Market Analysis",
-    description: "Access real-time charts and advanced trading tools.",
-  },
-  {
-    icon: Zap,
-    title: "Fast Execution",
-    description:
-      "Lightning-fast order execution for optimal trading performance.",
-  },
-  {
-    icon: Users,
-    title: "Expert Support",
-    description: "24/7 customer support from our team of crypto experts.",
-  },
-  {
-    icon: Award,
-    title: "Best Rates",
-    description: "Get the most competitive rates in the cryptocurrency market.",
-  },
-  {
-    icon: CreditCard,
-    title: "Easy Deposits",
-    description:
-      "Multiple payment methods for convenient deposits and withdrawals.",
-  },
-  {
-    icon: BarChart3,
-    title: "Portfolio Tracking",
-    description: "Monitor your investments with detailed portfolio analytics.",
-  },
-];
-
-const SpecialFeatures = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4">
-      <div className="container mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">
-            Our Special Features
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-4">
-            Discover what makes CryptoEx the preferred choice for cryptocurrency
-            trading.
-          </p>
-        </div>
+    <section className="bg-[#0f1419] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+          What&apos;s Great About Us
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="p-4 sm:p-6 bg-card border-border hover:border-primary/50 transition-all hover:shadow-lg"
+              className="bg-[#1a1f2e] rounded-lg p-6 border border-[#2d3748]"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-              </div>
-              <h3 className="text-base sm:text-lg font-bold mb-1 sm:mb-2">
+              <h3 className="text-lg font-bold text-[#fbbf24] mb-3">
                 {feature.title}
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 {feature.description}
               </p>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default SpecialFeatures;
+}
