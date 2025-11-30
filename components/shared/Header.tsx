@@ -11,18 +11,20 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-[#2a2f3f] z-50 border-b border-[#3d4250]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-1">
-          <div className="bg-white px-3 py-1 rounded text-sm font-bold">
-            <span className="text-black">WE BUY</span>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center">
+            <div className="bg-white px-3 py-1 rounded-l-md text-sm font-bold">
+              <span className="text-black">WE BUY</span>
+            </div>
+            <div className="bg-[#fbbf24] px-2 py-1 text-sm font-bold text-black">
+              GOLD
+            </div>
+            <div className="bg-white px-3 py-1 rounded-r-md text-sm font-bold">
+              <span className="text-black">NOW</span>
+            </div>
           </div>
-          <div className="bg-[#fbbf24] px-2 py-1 rounded text-sm font-bold text-black">
-            GOLD
-          </div>
-          <div className="bg-white px-3 py-1 rounded text-sm font-bold">
-            <span className="text-black">NOW</span>
-          </div>
-          <div className="text-[10px] text-gray-400 ml-2 hidden sm:block">
-            CASH & COINS FOR CASH
+          <div className="text-[10px] text-gray-400 text-center">
+            - CASH & COINS FOR CASH -
           </div>
         </div>
 
@@ -33,12 +35,6 @@ export default function Header() {
             className="text-white hover:text-[#fbbf24] transition text-sm"
           >
             Home
-          </Link>
-          <Link
-            href="/quote"
-            className="text-white hover:text-[#fbbf24] transition text-sm"
-          >
-            Quotes
           </Link>
           <Link
             href="/news"
@@ -79,12 +75,6 @@ export default function Header() {
             className="block text-white hover:text-[#fbbf24] transition"
           >
             Home
-          </Link>
-          <Link
-            href="/quote"
-            className="text-white hover:text-[#fbbf24] transition text-sm"
-          >
-            Quotes
           </Link>
           <Link
             href="#latest-news"

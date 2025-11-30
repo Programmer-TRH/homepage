@@ -5,7 +5,7 @@ export default function QuoteHero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1617638924689-92201e641243?w=1200&h=600&fit=crop')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1511465390398-532913e8328d??w=1400&h=900&fit=crop')`,
         }}
       >
         {/* Dark Overlay */}

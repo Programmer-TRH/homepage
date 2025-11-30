@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-[#0f1419] text-gray-400 py-12 border-t border-[#2d3748]">
@@ -24,16 +26,21 @@ export default function Footer() {
           </div>
 
           {/* Logo and Description */}
-          <div className="flex flex-col items-center justify-start md:justify-center">
-            <div className="flex items-center gap-1 mb-4">
-              <div className="bg-white px-3 py-1 rounded text-xs font-bold">
-                <span className="text-black">WE BUY</span>
+          <div className="flex flex-col gap-2 items-center justify-start md:justify-center">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center">
+                <div className="bg-white px-3 py-1 rounded-l-md text-sm font-bold">
+                  <span className="text-black">WE BUY</span>
+                </div>
+                <div className="bg-[#fbbf24] px-2 py-1 text-sm font-bold text-black">
+                  GOLD
+                </div>
+                <div className="bg-white px-3 py-1 rounded-r-md text-sm font-bold">
+                  <span className="text-black">NOW</span>
+                </div>
               </div>
-              <div className="bg-[#fbbf24] px-2 py-1 rounded text-xs font-bold text-black">
-                GOLD
-              </div>
-              <div className="bg-white px-3 py-1 rounded text-xs font-bold">
-                <span className="text-black">NOW</span>
+              <div className="text-[10px] text-gray-400 text-center">
+                - CASH & COINS FOR CASH -
               </div>
             </div>
             <p className="text-xs text-gray-500 text-center">
@@ -42,30 +49,30 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div>
+          <div className="ml-auto text-right">
             <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wide">
               LINKS
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-[#fbbf24] transition">
+                <Link href="/" className="hover:text-[#fbbf24] transition">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#fbbf24] transition">
+                <Link href="/quote" className="hover:text-[#fbbf24] transition">
                   News
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#fbbf24] transition">
+                <Link href="/quote" className="hover:text-[#fbbf24] transition">
                   Sell Today
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#fbbf24] transition">
+                <Link href="/quote" className="hover:text-[#fbbf24] transition">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
