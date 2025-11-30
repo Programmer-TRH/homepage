@@ -22,7 +22,7 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: unknown) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
   };
