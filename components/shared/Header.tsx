@@ -29,25 +29,36 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="#"
+            href="/"
             className="text-white hover:text-[#fbbf24] transition text-sm"
           >
             Home
           </Link>
           <Link
-            href="#latest-news"
+            href="/quote"
+            className="text-white hover:text-[#fbbf24] transition text-sm"
+          >
+            Quotes
+          </Link>
+          <Link
+            href="/news"
             className="text-white hover:text-[#fbbf24] transition text-sm"
           >
             News
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="text-white hover:text-[#fbbf24] transition text-sm"
           >
             Contact
           </Link>
-          <button className="bg-[#fbbf24] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#f59e0b] transition text-sm">
-            Sell Today
+          <button>
+            <Link
+              href="/quote"
+              className="bg-[#fbbf24] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#f59e0b] transition text-sm"
+            >
+              Sell Today
+            </Link>
           </button>
         </nav>
 
@@ -70,6 +81,12 @@ export default function Header() {
             Home
           </Link>
           <Link
+            href="/quote"
+            className="text-white hover:text-[#fbbf24] transition text-sm"
+          >
+            Quotes
+          </Link>
+          <Link
             href="#latest-news"
             className="block text-white hover:text-[#fbbf24] transition"
           >
@@ -81,8 +98,13 @@ export default function Header() {
           >
             Contact
           </Link>
-          <button className="w-full bg-[#fbbf24] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#f59e0b] transition">
-            Sell Today
+          <button>
+            <Link
+              href="/quote"
+              className="w-full bg-[#fbbf24] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#f59e0b] transition"
+            >
+              Sell Today
+            </Link>
           </button>
         </div>
       )}
