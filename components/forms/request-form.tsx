@@ -91,9 +91,12 @@ export default function RequestForm() {
     else if (!/^\S+@\S+\.\S+$/.test(formData.email))
       newErrors.email = "Enter a valid email.";
 
-    if (!formData.phone) newErrors.phone = "Phone number is required.";
-    else if (!/^[0-9+\-\s]{6,15}$/.test(formData.phone))
-      newErrors.phone = "Enter a valid phone number.";
+    const phoneRegex = /^\+?[0-9\s\-().]{7,20}$/;
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required.";
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = "Invalid phone number format.";
+    }
 
     if (!formData.dropOff) newErrors.dropOff = "Select a drop-off method.";
 
