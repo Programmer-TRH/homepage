@@ -8,50 +8,50 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "How do I know I'm getting a fair price?",
+      question: "How does the valuation work?",
       answer:
-        "Our prices are based on live market rates and are always competitive. We use certified scales and have expert appraisers on staff.",
+        "We assess your items based on the current market spot price, purity, weight and the condition or rarity of the piece. Once evaluated, we provide a clear and transparent quote so you know exactly what your item is worth.",
     },
     {
-      question: "What types of gold do you accept?",
+      question: "How do I sell gold or silver?",
       answer:
-        "We accept all types of gold including bars, coins, jewelry, and collectibles in any condition.",
+        "Simply contact us with details or photos of your items and we’ll guide you through the quick valuation process. You can then post your items or arrange collection if available in your area.",
     },
     {
-      question: "How quickly will I get paid?",
+      question: "Do you pay based on live prices?",
       answer:
-        "You can receive payment immediately in cash, or via bank transfer within 24 hours of valuation.",
+        "Our valuations are calculated using live market spot prices, with rates adjusted depending on the item type. Loose coins may be valued slightly below spot, while bars or rarer pieces may receive a higher percentage depending on condition and collectability.",
     },
     {
-      question: "Is the process secure?",
+      question: "Do I need an appointment or can I collect?",
       answer:
-        "Yes, we maintain the highest security standards and all transactions are fully confidential.",
+        "You don’t always need an appointment, and collection is available in some locations. We’ll confirm the best option once we speak with you.",
     },
     {
-      question: "Do I need identification?",
+      question: "How fast do I get a quote?",
       answer:
-        "For transactions over £15,000, we require valid identification as per UK regulations. No ID needed for smaller amounts.",
+        "We aim to return quotes within one hour during weekday working hours.",
     },
     {
-      question: "Can I change my mind after selling?",
+      question: "When do I get paid?",
       answer:
-        "We allow a 48-hour cooling-off period for all transactions, giving you time to reconsider.",
+        "Payment is issued immediately once your items are received and the valuation is confirmed.",
     },
     {
-      question: "What payment methods do you offer?",
+      question: "Is posting my items safe?",
       answer:
-        "We offer cash payments, bank transfers, and cheques depending on your preference and transaction amount.",
+        "Yes, we provide guidance on secure packaging and use insured delivery services. We notify you as soon as your parcel arrives.",
     },
     {
-      question: "Do you buy damaged or broken gold jewelry?",
+      question: "Do you buy broken or damaged pieces?",
       answer:
-        "Yes, we buy all gold including damaged, broken, or worn jewelry. We pay by weight regardless of condition.",
+        "Yes, we buy gold and silver in any condition. Value is mainly determined by weight and purity, so condition does not prevent a sale.",
     },
   ];
 
   return (
     <section className="bg-white py-16 md:py-24">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4">
           Frequently Asked Questions
         </h2>
@@ -59,7 +59,7 @@ export default function FAQ() {
           Everything you need to know about selling your gold
         </p>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {faqs.map((faq, index) => (
             <div key={index} className="bg-gray-50 rounded-lg overflow-hidden">
               <button

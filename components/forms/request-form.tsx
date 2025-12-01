@@ -158,7 +158,7 @@ export default function RequestForm() {
           placeholder="Full Name"
           value={formData.fullName}
           onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-500 focus-visible:ring-[#fbbf24]"
+          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
         />
         {errors.fullName && (
           <p className="text-red-400 text-sm mt-1">{errors.fullName}</p>
@@ -173,7 +173,7 @@ export default function RequestForm() {
           placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-500 focus-visible:ring-[#fbbf24]"
+          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
         />
         {errors.email && (
           <p className="text-red-400 text-sm mt-1">{errors.email}</p>
@@ -188,7 +188,7 @@ export default function RequestForm() {
           placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-500 focus-visible:ring-[#fbbf24]"
+          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
         />
         {errors.phone && (
           <p className="text-red-400 text-sm mt-1">{errors.phone}</p>

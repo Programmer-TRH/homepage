@@ -6,12 +6,12 @@ import UseIcon from "@/public/icon/Easy to use.png";
 
 export default function Features() {
   return (
-    <section className="bg-black py-16 md:py-24">
+    <section className="py-16 md:py-24">
       <div className="">
         {/* Features Grid */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
           {/* Left: Gold Products Image */}
-          <div className="flex justify-center bg-[#140e07]">
+          <div className="flex justify-center bg-[#0f0b05]">
             <Image
               width={720}
               height={480}

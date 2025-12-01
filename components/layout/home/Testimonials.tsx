@@ -1,3 +1,7 @@
+import { User2 } from "lucide-react";
+import Image from "next/image";
+import BuildingImage from "@/public/image/Home Hero.png";
+
 export default function Testimonials() {
   const testimonials = [
     {
@@ -10,43 +14,52 @@ export default function Testimonials() {
     {
       name: "Michael Davies",
       location: "Client - Manchester",
-      text: "Their gold buyers in the UK compared prices from several places and these guys offered the highest rate. The process was quick, transparent, and completely hassle-free.",
+      text: "Best gold buyers in the UK! I compared prices and they offered the highest rate. Quick, transparent and hassle-free..",
       initials: "MD",
       color: "bg-yellow-500",
     },
     {
       name: "Emma Wilson",
       location: "Client - Birmingham",
-      text: "Excellent service from start to finish. They explained everything clearly, gave me a fair valuation, and paid immediately. I wouldn't go anywhere else to sell my gold.",
+      text: "Excellent service from start to finish. Clear explanation, fair valuation and instant payment. I’m glad I didn’t go anywhere else.",
       initials: "EW",
       color: "bg-orange-500",
     },
   ];
 
   return (
-    <section className="bg-[#0f1419] py-16 md:py-24">
+    <section className="bg-[#0f1419bf] py-16 md:py-24 relative">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src={BuildingImage}
+          alt="Background building image"
+          fill
+          className="object-cover w-full h-full opacity-30" // adjust opacity if you want
+          priority
+        />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
           What Say Happy Client
         </h2>
         <p className="text-gray-400 text-center mb-16">
-          Hear from our satisfied customers who trusted us with their precious
-          metals
+          Hear what our clients have to say
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-[#1a1f2e] rounded-lg p-6 border border-[#2d3748]"
+              className="bg-[#1a1f2e9f] rounded-lg p-6 border border-[#2d3748]"
             >
               <div className="flex items-center gap-4 mb-4">
                 <div
                   className={`w-12 h-12 rounded-full ${testimonial.color} flex items-center justify-center`}
                 >
-                  <span className="text-white font-bold text-lg">
+                  {/* <span className="text-white font-bold text-lg">
                     {testimonial.initials}
-                  </span>
+                  </span> */}
+                  <User2 className="size-7 fill-white" />
                 </div>
                 <div>
                   <p className="text-white font-semibold">{testimonial.name}</p>

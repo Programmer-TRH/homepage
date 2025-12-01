@@ -57,7 +57,7 @@ export default function ContactSection() {
                 <Mail className="w-6 h-6 text-[#c4a564] shrink-0 mt-1" />
                 <div>
                   <p className="text-gray-800 font-semibold">
-                    info@romanbrothers.co.uk
+                    info@webuygoldnow.co.uk
                   </p>
                 </div>
               </div>

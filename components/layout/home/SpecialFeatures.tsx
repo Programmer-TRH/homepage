@@ -33,7 +33,7 @@ export default function SpecialFeatures() {
   ];
 
   return (
-    <section className="bg-[#0f1419] py-16 md:py-24">
+    <section className="bg-[#1a1d24] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
           What&apos;s Great About Us
@@ -43,7 +43,7 @@ export default function SpecialFeatures() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-[#1a1f2e] rounded-lg p-6 border border-[#2d3748]"
+              className="bg-[#26292e] rounded-lg p-6 border border-[#2d3748]"
             >
               <h3 className="text-lg font-bold text-[#fbbf24] mb-3">
                 {feature.title}
