@@ -47,7 +47,7 @@ export default function Hero() {
               className="border border-white text-white rounded-full font-semibold hover:bg-secondary"
               asChild
             >
-              <Link href="#contact">Drop off your Gold</Link>
+              <Link href="#request">Drop off your Gold</Link>
             </Button>
           </div>
         </div>
