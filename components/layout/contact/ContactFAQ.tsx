@@ -7,42 +7,42 @@ const faqItems = [
   {
     question: "How does the valuation work?",
     answer:
-      "Vestibulum et Oise. Vivamus Laceret. Nullam Tincidunt Adipiscing Etiam. Phasellus Tempus. Proin Viverra Ligula Sit Amet Ultrices Semper Libero Sit Amet Quis...",
+      "We assess your items based on the current market spot price, purity, weight and the condition or rarity of the piece. Once evaluated, we provide a clear and transparent quote so you know exactly what your item is worth.",
   },
   {
-    question: "How do I buy gold or silver?",
+    question: "How do I sell gold or silver?",
     answer:
-      "Our expert team will evaluate your gold or silver items and provide you with a competitive quote. Once you accept the offer, we can arrange payment through various methods.",
+      "Simply contact us with details or photos of your items and we’ll guide you through the quick valuation process. You can then post your items or arrange collection if available in your area.",
   },
   {
-    question: "How do I pay based on live prices?",
+    question: "Do you pay based on live prices?",
     answer:
-      "We base all our valuations on current live market prices, ensuring you get the best value for your precious metals.",
+      "Our valuations are calculated using live market spot prices, with rates adjusted depending on the item type. Loose coins may be valued slightly below spot, while bars or rarer pieces may receive a higher percentage depending on condition and collectability.",
   },
   {
-    question: "Do I need an appointment?",
+    question: "Do I need an appointment or can I collect?",
     answer:
-      "While appointments are not required, we recommend booking ahead to ensure minimal wait time during your visit.",
+      "You don’t always need an appointment, and collection is available in some locations. We’ll confirm the best option once we speak with you.",
   },
   {
     question: "How fast do I get a quote?",
     answer:
-      "Our valuation process is quick and efficient. Most quotes are provided within 24 hours of submission.",
+      "We aim to return quotes within one hour during weekday working hours.",
   },
   {
     question: "When do I get paid?",
     answer:
-      "Payment is typically processed within 2-3 business days of accepting our offer.",
+      "Payment is issued immediately once your items are received and the valuation is confirmed.",
   },
   {
     question: "Is posting my items safe?",
     answer:
-      "Yes, we use fully insured courier services to ensure your items are protected throughout the shipping process.",
+      "Yes, we provide guidance on secure packaging and use insured delivery services. We notify you as soon as your parcel arrives.",
   },
   {
     question: "Do you buy broken or damaged pieces?",
     answer:
-      "Yes, we accept broken, damaged, and worn gold and silver jewelry in any condition.",
+      "Yes, we buy gold and silver in any condition. Value is mainly determined by weight and purity, so condition does not prevent a sale.",
   },
 ];
 
