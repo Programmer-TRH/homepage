@@ -1,18 +1,21 @@
-import { BrickWallShield, MousePointerClick, ShieldCheck } from "lucide-react";
 import Image from "next/image";
+import FeatureImage from "@/public/image/Feature Hero.png";
+import SafetyIcon from "@/public/icon/Safety Exchange.png";
+import SecurityIcon from "@/public/icon/Private Security.png";
+import UseIcon from "@/public/icon/Easy to use.png";
 
 export default function Features() {
   return (
     <section className="bg-black py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="">
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
           {/* Left: Gold Products Image */}
-          <div className="flex justify-center">
+          <div className="flex justify-center bg-[#140e07]">
             <Image
               width={720}
               height={480}
-              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&h=600&fit=crop"
+              src={FeatureImage}
               alt="Gold and Silver Coins"
               className="max-w-md w-full h-auto"
             />
@@ -26,8 +29,12 @@ export default function Features() {
             </h2>
             {/* Feature 1 */}
             <div className="flex gap-6 items-start">
-              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
-                <ShieldCheck />
+              <div className="shrink-0 size-14 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <Image
+                  src={SafetyIcon}
+                  alt="Safety icon"
+                  className="h-14 w-14"
+                />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
@@ -43,8 +50,12 @@ export default function Features() {
 
             {/* Feature 2 */}
             <div className="flex gap-6 items-start">
-              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
-                <BrickWallShield />
+              <div className="shrink-0 size-14 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <Image
+                  src={SecurityIcon}
+                  alt="Safety icon"
+                  className="h-14 w-14"
+                />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
@@ -60,8 +71,8 @@ export default function Features() {
 
             {/* Feature 3 */}
             <div className="flex gap-6 items-start">
-              <div className="shrink-0 w-12 h-12 bg-[#2a2f3f] rounded-full flex items-center justify-center">
-                <MousePointerClick />
+              <div className="shrink-0 size-14 bg-[#2a2f3f] rounded-full flex items-center justify-center">
+                <Image src={UseIcon} alt="Safety icon" className="h-14 w-14" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
