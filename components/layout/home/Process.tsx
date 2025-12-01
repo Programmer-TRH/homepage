@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Process1 from "@/public/icon/Contact Us.png";
+
 export default function Process() {
   return (
     <section className="bg-black py-16 md:py-24">
@@ -14,15 +17,9 @@ export default function Process() {
           {/* Step 1 */}
           <div className="bg-[#1a1f2e] rounded-lg p-8 flex flex-col items-center text-center">
             <div className="w-20 h-20 bg-[#fbbf24] rounded-full flex items-center justify-center mb-6">
-              <svg
-                className="w-10 h-10 text-black"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.882l.291 2.036a1 1 0 01-.932 1.159H6.93a6.001 6.001 0 016.021 6.021v2a1 1 0 11-2 0v-2a4 4 0 00-4-4H4.882a1 1 0 01-1.159-.932L3.65 4.138A1 1 0 012.7 3.154V3z" />
-              </svg>
+              <Image src={Process1} alt="Process 1" className="w-20 h-20" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Contact Us</h3>
+            <h3 className="text-xl font-bold text-accent mb-4">Contact Us</h3>
             <p className="text-gray-400 text-sm">
               Get in touch via phone, online form or visit our store
             </p>
@@ -43,7 +40,9 @@ export default function Process() {
                 <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Get Valuation</h3>
+            <h3 className="text-xl font-bold text-accent mb-4">
+              Get Valuation
+            </h3>
             <p className="text-gray-400 text-sm">
               Our experts evaluate your gold at current market rates
             </p>
@@ -67,7 +66,7 @@ export default function Process() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-white mb-4">Accept Offer</h3>
+            <h3 className="text-xl font-bold text-accent mb-4">Accept Offer</h3>
             <p className="text-gray-400 text-sm">
               Review our competitive offer and accept if satisfied
             </p>

@@ -38,12 +38,12 @@ export default function Features() {
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                  Safty Exchange
+                  Safe
                 </h3>
                 <p className="text-gray-400 text-sm md:text-base">
-                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
-                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
-                  Sit Amet Harpening
+                  Your items are handled with care from the moment they arrive,
+                  and we follow strict checks to ensure every step of the
+                  process protects you.
                 </p>
               </div>
             </div>
@@ -59,12 +59,12 @@ export default function Features() {
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                  Private Security
+                  Secure
                 </h3>
                 <p className="text-gray-400 text-sm md:text-base">
-                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
-                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
-                  Sit Amet Harpening
+                  We use verified processes so you can sell with confidence, and
+                  your personal details are protected with strong security
+                  systems.
                 </p>
               </div>
             </div>
@@ -76,12 +76,11 @@ export default function Features() {
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                  Easy To Use
+                  Fast & Easy
                 </h3>
                 <p className="text-gray-400 text-sm md:text-base">
-                  Cursus Ultricorper Libentoseer Niom Eget Soa Bibendum Maximus
-                  Tempus Telus Eget Condinentum Rhoncusfel Diam Semper Libero
-                  Sit Amet Harpening
+                  Our simple process makes selling your gold straightforward,
+                  and we pay you fast so you can enjoy your money without delay.
                 </p>
               </div>
             </div>

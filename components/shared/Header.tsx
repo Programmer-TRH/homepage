@@ -65,19 +65,19 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden bg-(--header) border-t border-[#3d4250] px-6 py-4 space-y-4">
           <Link
-            href="#"
+            href="/"
             className="block text-white hover:text-[#fbbf24] transition"
           >
             Home
           </Link>
           <Link
-            href="#latest-news"
+            href="/news"
             className="block text-white hover:text-[#fbbf24] transition"
           >
             News
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="block text-white hover:text-[#fbbf24] transition"
           >
             Contact
