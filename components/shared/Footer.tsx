@@ -15,7 +15,10 @@ export default function Footer() {
             <p className="text-sm mb-2">Gold Town Ltd,</p>
             <p className="text-sm mb-2">25 Temple Rd,</p>
             <p className="text-sm mb-4">London, SW7 2NS</p>
-            <p className="text-sm mb-2 font-semibold">0333 903 2040</p>
+            <p className="text-sm mb-2 font-semibold">0208 080 2848</p>
+            <p className="text-sm mb-2 font-semibold">
+              info@webuygoldnow.co.uk
+            </p>
           </div>
 
           {/* Logo and Description */}
