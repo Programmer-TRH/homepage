@@ -69,7 +69,7 @@ export default function ContactSection() {
                 width="100%"
                 height="100%"
                 title="We Buy Gold Now Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.3547847037146!2d-0.1767!3d51.5073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b50667a8e9%3A0x12345678!2sLondon%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2009.2149562630204!2d0.018345422168117752!3d51.4061045710564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1764686354487!5m2!1sen!2sus"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"

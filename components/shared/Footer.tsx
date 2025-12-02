@@ -12,9 +12,9 @@ export default function Footer() {
             <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wide">
               CONTACT
             </h4>
-            <p className="text-sm mb-2">Gold Town Ltd,</p>
-            <p className="text-sm mb-2">25 Temple Rd,</p>
-            <p className="text-sm mb-4">London, SW7 2NS</p>
+            <p className="text-sm mb-2">Old Town Hall,</p>
+            <p className="text-sm mb-2">30 Tweedy Rd,</p>
+            <p className="text-sm mb-4">Bromley BR1 3FE</p>
             <p className="text-sm mb-2 font-semibold">0208 080 2848</p>
             <p className="text-sm mb-2 font-semibold">
               info@webuygoldnow.co.uk
