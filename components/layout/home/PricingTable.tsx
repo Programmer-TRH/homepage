@@ -27,7 +27,7 @@ export default function PricingTable() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* GOLD COINS */}
           <div>
-            <h3 className="bg-[#d4a574] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
+            <h3 className="bg-linear-to-l from-[#ceb04e] to-[#c4a352] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
               GOLD COINS
             </h3>
             <table className="w-full border border-gray-300 text-background">
@@ -60,7 +60,7 @@ export default function PricingTable() {
 
           {/* GOLD BARS */}
           <div>
-            <h3 className="bg-[#d4a574] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
+            <h3 className="bg-linear-to-l from-[#ceb04e] to-[#c4a352] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
               GOLD BARS
             </h3>
             <table className="w-full border border-gray-300 text-background">
@@ -93,10 +93,10 @@ export default function PricingTable() {
 
           {/* SILVER COINS */}
           <div>
-            <h3 className="bg-gray-500 text-white font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
+            <h3 className="bg-linear-to-l from-[#bdbdbd] to-[#a9a9a9] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
               SILVER COINS
             </h3>
-            <table className="w-full border border-gray-300 text-background">
+            <table className="w-full border  border-gray-300 text-background">
               <thead>
                 <tr>
                   {silverCoins.map((item) => (
@@ -126,7 +126,7 @@ export default function PricingTable() {
 
           {/* SILVER BARS */}
           <div>
-            <h3 className="bg-gray-500 text-white font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
+            <h3 className="bg-linear-to-l from-[#bdbdbd] to-[#aaaaaa] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
               SILVER BARS
             </h3>
             <table className="w-full border border-gray-300 text-background">
@@ -165,7 +165,7 @@ export default function PricingTable() {
           </p>
           <a
             href="/quote"
-            className="inline-flex items-center gap-2 text-[#d4a574] hover:text-[#c49464] transition  justify-center w-4/5"
+            className="inline-flex items-center gap-2 text-[#d4a574] hover:text-[#c49464] transition justify-center w-4/5"
           >
             <span className="text-xl">→</span>
             <span className="font-semibold text-sm">
