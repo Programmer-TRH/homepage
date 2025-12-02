@@ -32,19 +32,19 @@ const faqs = [
     id: 1,
     step: "Step.1 - Select What You're Selling",
     answer:
-      "Choose one of the categories to begin: Jewellery and Scrap, Coins and Bars, Other Metals.",
+      "Choose one of the categories to begin Coins and Bars, Gold and Silver.",
   },
   {
     id: 2,
     step: "Step.2 - Enter Weights or Quantities",
     answer:
-      "Use the input boxes to add the estimated weight (in grams) for each item type. The selected items will appear in a table below this one. Don't worry if you don't know the exact weight – a rough estimate is fine. If you have a custom carat or item, use the 'ct Gold' and amount fields at the bottom to specify it.",
+      "Use the input boxes to add the estimated weight (in ounces) for each item type. The selected items will appear in a table below this one. Don't worry if you don't know the exact weight – a rough estimate is fine.",
   },
   {
     id: 3,
-    step: "Step.3 - Click the Sell Now button",
+    step: "Step.3 - Fill out the form above",
     answer:
-      "Click the 'Sell Now' at the bottom of the screen next to our most up to date Guide Price.",
+      "Once you know your average rough price you can fill out your details in the above from to start your selling process.",
   },
 ];
 
