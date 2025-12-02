@@ -1,24 +1,24 @@
+import Image from "next/image";
+import NewsHeroImage from "@/public/image/view-ornamental-clock-london-city.jpg";
+
 export default function NewsHero() {
   return (
-    <div className="relative w-full h-96 md:h-[500px] mt-20 overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&h=600&fit=crop)",
-        }}
+    <section className="relative w-full h-64 md:h-[70vh] mt-16 overflow-hidden">
+      <Image
+        src={NewsHeroImage}
+        alt="Home Hero Image"
+        width={720}
+        height={720}
+        className="absolute inset-0 size-full bg-bottom-right"
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
-
+      <div className="absolute inset-0 bg-black/50 h-full" />
       {/* Content */}
-      <div className="relative h-full flex items-center justify-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-white text-center">
+      <div className="relative h-full flex items-center justify-center z-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-white text-center text-balance">
           News & Blogs
         </h1>
       </div>
-    </div>
+    </section>
   );
 }

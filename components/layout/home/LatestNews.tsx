@@ -1,33 +1,9 @@
+import { Button } from "@/components/ui/button";
+import { News } from "@/lib/data/News";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LatestNews() {
-  const news = [
-    {
-      date: "May 16, 2025",
-      title: "Best Price When Selling Your Gold in 2025",
-      description:
-        "Discover updated market rates, how to sell safely, and where to get the best value for your gold items.",
-      image:
-        "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop",
-    },
-    {
-      date: "May 14, 2025",
-      title: "Gold vs. Other Investments in 2025",
-      description:
-        "Compare gold's performance against stocks, property, and savings in the current economic climate.",
-      image:
-        "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop",
-    },
-    {
-      date: "May 10, 2025",
-      title: "Why Gold Remains a Safe Investment",
-      description:
-        "Understanding the benefits of investing in precious metals during times of economic uncertainty.",
-      image:
-        "https://images.unsplash.com/photo-1453960889848-4b8e0d81d5ce?w=400&h=300&fit=crop",
-    },
-  ];
-
   return (
     <section className="bg-white py-16 md:py-24" id="latest-news">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +12,7 @@ export default function LatestNews() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {news.map((article, index) => (
+          {News.slice(0, 3).map((article, index) => (
             <div
               key={index}
               className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
@@ -50,12 +26,15 @@ export default function LatestNews() {
               />
               <div className="p-6">
                 <p className="text-[#fbbf24] text-sm font-semibold mb-2">
-                  {article.date}
+                  {article.createdAt}
                 </p>
                 <h3 className="text-lg font-bold text-black mb-3">
                   {article.title}
                 </h3>
                 <p className="text-gray-600 text-sm">{article.description}</p>
+                <Button asChild variant={"outline"} className="mt-6">
+                  <Link href={`/news/${article.slug}`}>Read More</Link>
+                </Button>
               </div>
             </div>
           ))}

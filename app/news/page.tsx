@@ -4,7 +4,7 @@ import NewsHero from "@/components/layout/news/NewsHero";
 
 export default function NewsPage() {
   return (
-    <main>
+    <main className="bg-white ">
       <NewsHero />
       <NewsFeatureCards />
       <NewsBlogGrid />
