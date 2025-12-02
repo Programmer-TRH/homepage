@@ -135,7 +135,7 @@ export default function UploadDetails() {
         <form
           id="upload-form"
           onSubmit={form.handleSubmit(onSubmit)}
-          className="bg-linear-to-br from-[#f5f5f5] to-[#efefef] rounded-3xl p-8 md:p-12 text-black"
+          className="bg-linear-to-br from-[#f5f5f5] to-[#efefef] rounded-3xl p-8 md:p-12 text-black border-2 border-[#e5dcc8] shadow-lg"
         >
           <FieldGroup>
             {/* Full Name */}
@@ -333,6 +333,7 @@ export default function UploadDetails() {
 
         {/* Submit Button */}
         <Button
+          size="lg"
           type="submit"
           form="upload-form"
           className="w-full mt-6 bg-[#c4a564] hover:bg-[#b39556] text-white font-bold py-3 px-6 rounded-lg transition duration-200"

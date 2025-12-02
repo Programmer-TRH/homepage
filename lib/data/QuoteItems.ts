@@ -1,0 +1,96 @@
+export interface QuoteItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity?: number;
+}
+
+export const goldCoins: QuoteItem[] = [
+  { id: "gold-coin-1", name: "Australia Nugget", price: 0 },
+  { id: "gold-coin-2", name: "Austria 100 Corona", price: 0 },
+  { id: "gold-coin-3", name: "Austria Ducat", price: 0 },
+  { id: "gold-coin-4", name: "Austria Half Philharmonica", price: 0 },
+  { id: "gold-coin-5", name: "Austria Philharmonica", price: 0 },
+  { id: "gold-coin-6", name: "Austria Quarter Philharmonica", price: 0 },
+  { id: "gold-coin-7", name: "China Panda Gold", price: 0 },
+  { id: "gold-coin-8", name: "Fifty Pence Coin", price: 0 },
+  { id: "gold-coin-9", name: "French 20 Francs", price: 0 },
+  { id: "gold-coin-10", name: "Full Britannia", price: 0 },
+  { id: "gold-coin-11", name: "Full Canada Maple", price: 0 },
+  { id: "gold-coin-12", name: "Full Krugerrand", price: 0 },
+  { id: "gold-coin-13", name: "Full Lunar", price: 0 },
+  { id: "gold-coin-14", name: "Full Sovereign", price: 0 },
+  { id: "gold-coin-15", name: "Half Australia Nugget", price: 0 },
+  { id: "gold-coin-16", name: "Half Britannia", price: 0 },
+  { id: "gold-coin-17", name: "Half Canada Maple", price: 0 },
+  { id: "gold-coin-18", name: "Half Krugerrand", price: 0 },
+  { id: "gold-coin-19", name: "Half Sovereign", price: 0 },
+  { id: "gold-coin-20", name: "Mexican 50 Peso", price: 0 },
+  { id: "gold-coin-21", name: "Mexican dos Pesos", price: 0 },
+  { id: "gold-coin-22", name: "Quarter Britannia", price: 0 },
+  { id: "gold-coin-23", name: "Quarter Canada Maple", price: 0 },
+  { id: "gold-coin-24", name: "Quarter Krugerrand", price: 0 },
+  { id: "gold-coin-25", name: "Quarter Sovereign", price: 0 },
+  { id: "gold-coin-26", name: "South Africa 2 Rand", price: 0 },
+  { id: "gold-coin-27", name: "Sovereign £2", price: 0 },
+  { id: "gold-coin-28", name: "Sovereign £5", price: 0 },
+  { id: "gold-coin-29", name: "Tenth Britannia", price: 0 },
+  { id: "gold-coin-30", name: "Tenth Krugerrand", price: 0 },
+  { id: "gold-coin-31", name: "Twentieth Australia Nugget", price: 0 },
+  { id: "gold-coin-32", name: "Twentieth Canada Maple", price: 0 },
+  { id: "gold-coin-33", name: "USA Buffalo $50 1oz", price: 0 },
+  { id: "gold-coin-34", name: "USA Dollar", price: 0 },
+  { id: "gold-coin-35", name: "USA Eagle $10", price: 0 },
+  { id: "gold-coin-36", name: "USA Eagle $20", price: 0 },
+  { id: "gold-coin-37", name: "USA Eagle $25 1/2oz", price: 0 },
+  { id: "gold-coin-38", name: "USA Eagle $50 1oz", price: 0 },
+];
+
+export const goldBars: QuoteItem[] = [
+  { id: "gold-bar-1", name: "Gold Bar 1g", price: 95.56 },
+  { id: "gold-bar-2", name: "Gold Bar 2g", price: 191.12 },
+  { id: "gold-bar-3", name: "Gold Bar 2.5g", price: 238.9 },
+  { id: "gold-bar-4", name: "Gold Bar 1/10oz", price: 297.19 },
+  { id: "gold-bar-5", name: "Gold Bar 5g", price: 477.8 },
+  { id: "gold-bar-6", name: "Gold Bar 1/4oz", price: 743.46 },
+  { id: "gold-bar-7", name: "Gold Bar 10g", price: 955.61 },
+  { id: "gold-bar-8", name: "Gold Bar 1/2oz", price: 1485.97 },
+  { id: "gold-bar-9", name: "Gold Bar 20g", price: 1911.21 },
+  { id: "gold-bar-10", name: "Gold Bar 1oz", price: 2971.93 },
+  { id: "gold-bar-11", name: "Gold Bar 50g", price: 4778.03 },
+  { id: "gold-bar-12", name: "Gold Bar 100g", price: 9556.05 },
+  { id: "gold-bar-13", name: "Gold Bar 250g", price: 23890.13 },
+  { id: "gold-bar-14", name: "Gold Bar 10oz", price: 29722.18 },
+  { id: "gold-bar-15", name: "Gold Bar 500g", price: 47780.25 },
+  { id: "gold-bar-16", name: "Gold Bar 1kg", price: 95560.5 },
+  { id: "gold-bar-17", name: "Gold Bar 12.5kg", price: 1194506.25 },
+];
+
+export const silverCoins: QuoteItem[] = [
+  { id: "silver-coin-1", name: "1kg Silver coin", price: 1086.91 },
+  { id: "silver-coin-2", name: "American Buffalo", price: 33.8 },
+  { id: "silver-coin-3", name: "American Dollar", price: 33.8 },
+  { id: "silver-coin-4", name: "Australian Nugget", price: 33.8 },
+  { id: "silver-coin-5", name: "Austrian Philharmonic", price: 33.8 },
+  { id: "silver-coin-6", name: "Britannia", price: 33.8 },
+  { id: "silver-coin-7", name: "Canadian Maple Leaf", price: 33.8 },
+  { id: "silver-coin-8", name: "China Panda Silver", price: 33.8 },
+];
+
+export const silverBars: QuoteItem[] = [
+  { id: "silver-bar-1", name: "Silver bar 2.5g", price: 3.04 },
+  { id: "silver-bar-2", name: "Silver bar 5g", price: 6.07 },
+  { id: "silver-bar-3", name: "Silver bar 10g", price: 12.15 },
+  { id: "silver-bar-4", name: "Silver Bar 1/2oz", price: 18.89 },
+  { id: "silver-bar-5", name: "Silver Bar 20g", price: 24.3 },
+  { id: "silver-bar-6", name: "Silver Bar 1oz", price: 37.78 },
+  { id: "silver-bar-7", name: "Silver Bar 2oz", price: 39.13 },
+  { id: "silver-bar-8", name: "Silver Bar 50g", price: 60.74 },
+  { id: "silver-bar-9", name: "Silver Bar 100g", price: 121.48 },
+  { id: "silver-bar-10", name: "Silver Bar 5oz", price: 188.91 },
+  { id: "silver-bar-11", name: "Silver Bar 250g", price: 303.7 },
+  { id: "silver-bar-12", name: "Silver Bar 10oz", price: 377.83 },
+  { id: "silver-bar-13", name: "Silver Bar 500g", price: 607.39 },
+  { id: "silver-bar-14", name: "Silver Bar 1kg", price: 1214.78 },
+  { id: "silver-bar-15", name: "Silver Bar 5kg", price: 6073.92 },
+];
