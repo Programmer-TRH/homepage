@@ -6,10 +6,8 @@ export default function QuotePage() {
   return (
     <main>
       <QuoteHero />
-      <div className="pt-20">
-        <UploadDetails />
-        <InstantQuoteSection />
-      </div>
+      <UploadDetails />
+      <InstantQuoteSection />
     </main>
   );
 }

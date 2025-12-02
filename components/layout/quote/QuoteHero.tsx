@@ -1,29 +1,30 @@
+import Image from "next/image";
+import QuoteHeroImage from "@/public/image/view-ornamental-clock-london-city.jpg";
+
 export default function QuoteHero() {
   return (
-    <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] mt-16 overflow-hidden">
+    <section className="relative w-full h-96 md:h-[80vh] mt-16 overflow-hidden">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1511465390398-532913e8328d??w=1400&h=900&fit=crop')`,
-        }}
-      >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
-
+      <Image
+        src={QuoteHeroImage}
+        alt="Home Hero Image"
+        width={1080}
+        height={1080}
+        className="absolute inset-0 size-full bg-bottom-left bg-cover"
+      />
+      <div className="absolute inset-0 bg-black/50 h-full" />
       {/* Content */}
       <div className="relative h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
             We Trade
           </h1>
-          <div className="flex items-baseline gap-3 mb-6">
+          <div className="flex items-baseline gap-3 mb-2 md:mb-6">
             <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#fbbf24]">
               Gold & Silver
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 md:mb-6">
             For Cash
           </h2>
           <p className="text-lg md:text-xl text-gray-100">

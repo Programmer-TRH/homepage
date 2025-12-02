@@ -124,7 +124,7 @@ export default function UploadDetails() {
   };
 
   return (
-    <section className="bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-10 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12">
           Upload your details here:
