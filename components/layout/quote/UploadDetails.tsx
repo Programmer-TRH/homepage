@@ -108,7 +108,6 @@ export default function UploadDetails() {
       // Show success toast
       toast.success("Form submitted successfully!", {
         description: `${data.files.length} file(s) uploaded to Cloudinary`,
-        position: "bottom-right",
       });
 
       console.log("Files:", data.files);
@@ -118,7 +117,6 @@ export default function UploadDetails() {
       toast.error("Upload failed", {
         description:
           error instanceof Error ? error.message : "Please try again",
-        position: "bottom-right",
       });
 
       console.error("Upload error:", error);

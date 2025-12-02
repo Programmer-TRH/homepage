@@ -241,7 +241,7 @@ export default function InstantQuoteSection() {
                         onClick={() => decreaseQty(item.id)}
                         className="px-2 py-1 bg-gray-400 hover:bg-gray-300 rounded"
                       >
-                        –
+                        -
                       </button>
 
                       <span className="w-6 text-center">{item.quantity}</span>
