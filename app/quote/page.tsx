@@ -1,7 +1,6 @@
 import InstantQuoteSection from "@/components/layout/quote/InstantQuoteSection";
 import QuoteHero from "@/components/layout/quote/QuoteHero";
 import UploadDetails from "@/components/layout/quote/UploadDetails";
-import React from "react";
 
 export default function QuotePage() {
   return (
