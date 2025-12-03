@@ -26,22 +26,20 @@ import { NewsPost } from "@/lib/types/blog-types";
 
 export default function AdminDashboard() {
   const [posts, setPosts] = useState<NewsPost[]>([]);
-  const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("/api/blog");
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    };
     fetchPosts();
   }, []);
-
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch("/api/blog");
-      const data = await response.json();
-      setPosts(data);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleDelete = async () => {
     if (!deleteId) return;

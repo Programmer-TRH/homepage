@@ -1,14 +1,15 @@
 import { NewsPostSchema } from "@/lib/schema/news-schema";
+import { NewsPost } from "@/lib/types/blog-types";
 import { NextRequest, NextResponse } from "next/server";
 
 // Reference to in-memory posts
-let posts: any[] = [];
+let posts: NewsPost[] = [];
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = params.id;
+  const { id } = await params;
 
   // Fetch fresh data
   const baseUrl = req.nextUrl.origin;
@@ -26,10 +27,10 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id;
+    const { id } = await params;
     const body = await req.json();
     const validated = NewsPostSchema.parse(body);
 
@@ -61,9 +62,9 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = params.id;
+  const { id } = await params;
 
   const baseUrl = req.nextUrl.origin;
   const response = await fetch(`${baseUrl}/api/blog`, { cache: "no-store" });

@@ -79,14 +79,16 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
     }
   };
 
-  const handleLocalUpload = (e: any) => {
+  const handleLocalUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.readAsDataURL(file);
 
     reader.onload = () => {
+      // Type-safe guard
+      if (typeof reader.result !== "string") return;
+
       editor
         .chain()
         .focus()
@@ -99,6 +101,8 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
 
       setImageOpen(false);
     };
+
+    reader.readAsDataURL(file);
   };
 
   return (

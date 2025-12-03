@@ -32,7 +32,7 @@ export default async function SingleBlogPage({
       <h1 className="text-4xl font-bold mb-6">{blog.title}</h1>
 
       <div
-        className="prose prose-lg"
+        className="prose prose-lg blog-content"
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
       <Image
