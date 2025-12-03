@@ -1,40 +1,40 @@
 import { NewsPostSchema } from "@/lib/schema/news-schema";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // Reference to in-memory posts
 let posts: any[] = [];
 
 export async function GET(
-  request: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await Promise.resolve(params);
+  const id = params.id;
 
   // Fetch fresh data
-  const response = await fetch(`${request.url.split("/api")[0]}/api/blog`);
+  const baseUrl = req.nextUrl.origin;
+  const response = await fetch(`${baseUrl}/api/blog`, { cache: "no-store" });
   const result = await response.json();
-  console.log("Result:", result);
   posts = result;
 
   const post = posts.find((p) => p.id === id);
-  console.log("Post:", post);
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
+
   return NextResponse.json(post);
 }
 
 export async function PUT(
-  request: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await Promise.resolve(params);
-    const body = await request.json();
+    const id = params.id;
+    const body = await req.json();
     const validated = NewsPostSchema.parse(body);
 
-    // Fetch fresh data
-    const response = await fetch(`${request.url.split("/api")[0]}/api/blog`);
+    const baseUrl = req.nextUrl.origin;
+    const response = await fetch(`${baseUrl}/api/blog`, { cache: "no-store" });
     posts = await response.json();
 
     const postIndex = posts.findIndex((p) => p.id === id);
@@ -49,6 +49,7 @@ export async function PUT(
     };
 
     posts[postIndex] = updatedPost;
+
     return NextResponse.json(updatedPost);
   } catch (error) {
     return NextResponse.json(
@@ -59,15 +60,14 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await Promise.resolve(params);
+  const id = params.id;
 
-  // Fetch fresh data
-  const response = await fetch(`${request.url.split("/api")[0]}/api/blog`);
+  const baseUrl = req.nextUrl.origin;
+  const response = await fetch(`${baseUrl}/api/blog`, { cache: "no-store" });
   const result = await response.json();
-  console.log("Result:", result);
   posts = result;
 
   const postIndex = posts.findIndex((p) => p.id === id);
@@ -76,6 +76,6 @@ export async function DELETE(
   }
 
   posts.splice(postIndex, 1);
-  console.log("After delete:", posts);
+
   return NextResponse.json({ success: true });
 }
