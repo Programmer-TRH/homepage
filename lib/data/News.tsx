@@ -8,6 +8,7 @@ import NewsImage6 from "@/public/image/News 6.png";
 import NewsImage7 from "@/public/image/News 7.png";
 import NewsImage8 from "@/public/image/News 8.png";
 import NewsImage9 from "@/public/image/News 9.png";
+import { NewsPost } from "../types/blog-types";
 
 export type NewsItem = {
   id: number;
@@ -331,5 +332,26 @@ export const News: NewsItem[] = [
 
       <p><strong>Contact:</strong> 0208 080 2848, <strong>Email:</strong> info@webuygoldnow.co.uk, or visit Old Town Hall, 30 Tweedy Rd, Bromley BR1 3FE.</p>
     `,
+  },
+];
+
+// In-memory storage for demo (replace with database)
+export const posts: NewsPost[] = [
+  {
+    id: "1",
+    title: "Getting Started with Next.js",
+    slug: "getting-started-nextjs",
+    excerpt:
+      "Learn the fundamentals of building modern web applications with Next.js and React.",
+    content:
+      "<h2>Introduction</h2><p>Next.js is a powerful React framework that makes it easy to build production-ready applications.</p>",
+    category: "Development",
+    author: "John Doe",
+    image: "/nextjs-logo.png",
+    featured: true,
+    published: true,
+    publishedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+    updatedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
   },
 ];
