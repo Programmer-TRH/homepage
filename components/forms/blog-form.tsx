@@ -41,6 +41,12 @@ export function BlogEditorForm({
   });
   const router = useRouter();
 
+  const slug = form
+    .watch("title")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
   const SubmitForm = async (data: NewsPostFormData) => {
     console.log("Data:", data);
     console.log("Images:", data.content);
@@ -112,6 +118,7 @@ export function BlogEditorForm({
               <Input
                 {...field}
                 id={field.name}
+                value={slug}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter slug..."
                 className="text-lg font-semibold"

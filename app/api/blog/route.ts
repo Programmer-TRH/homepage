@@ -1,6 +1,6 @@
 import { posts } from "@/lib/data/News";
 import { NewsPostSchema } from "@/lib/schema/news-schema";
-import { NewsPost } from "@/lib/types/blog-types";
+import { NewsPost } from "@/lib/types/news-types";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -12,16 +12,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const validated = NewsPostSchema.parse(body);
 
-    const slug = validated.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-
     const newPost: NewsPost = {
       id: Date.now().toString(),
       ...validated,
-      slug,
-      publishedAt: validated.published ? new Date().toISOString() : "",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Newspaper, Mail, Coins } from "lucide-react";
 import { GoldRequest, UserMessage } from "@/lib/types/messages-types";
+import { NewsPost } from "@/lib/types/news-types";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -17,7 +18,7 @@ export default function AdminDashboard() {
     const savedMessages = localStorage.getItem("userMessages");
     const savedRequests = localStorage.getItem("goldRequests");
 
-    const news: News[] = savedNews ? JSON.parse(savedNews) : [];
+    const news: NewsPost[] = savedNews ? JSON.parse(savedNews) : [];
     const messages: UserMessage[] = savedMessages
       ? JSON.parse(savedMessages)
       : [];
