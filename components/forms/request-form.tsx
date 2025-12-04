@@ -1,231 +1,191 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Input } from "@/components/ui/input";
-
 import { Checkbox } from "@/components/ui/checkbox";
-
+import { Button } from "../ui/button";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import {
+  InstantSellRequestFormData,
+  InstantSellRequestSchema,
+  items,
+} from "@/lib/schema/contact-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 
-// ------ Types ------
-interface FormDataType {
-  goldBars: boolean;
-  goldCoins: boolean;
-  silverBars: boolean;
-  silverCoins: boolean;
-  fullName: string;
-  email: string;
-  phone: string;
-  dropOff: string;
-}
-
-interface FormErrors {
-  items?: string;
-  fullName?: string;
-  email?: string;
-  phone?: string;
-  dropOff?: string;
-}
-
-// ------ Sanitizer ------
-const sanitize = (value: string) => value.replace(/<[^>]*>?/gm, "").trim();
-
-export default function RequestForm() {
+export default function InstantSellRequestForm() {
   const router = useRouter();
-
-  const [formData, setFormData] = useState<FormDataType>({
-    goldBars: false,
-    goldCoins: false,
-    silverBars: false,
-    silverCoins: false,
-    fullName: "",
-    email: "",
-    phone: "",
-    dropOff: "",
+  const { handleSubmit, control } = useForm<InstantSellRequestFormData>({
+    mode: "onChange",
+    resolver: zodResolver(InstantSellRequestSchema),
+    defaultValues: {
+      items: [],
+      name: "",
+      email: "",
+      phone: "",
+      dropOff: "",
+      status: "new",
+    },
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
-
-  // ---- handle checkbox + text inputs ----
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, type } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        type === "checkbox"
-          ? (e.target as HTMLInputElement).checked
-          : sanitize(e.target.value),
-    }));
-  };
-
-  // ---- Validation ----
-  const validate = () => {
-    const newErrors: FormErrors = {};
-
-    if (
-      !formData.goldBars &&
-      !formData.goldCoins &&
-      !formData.silverBars &&
-      !formData.silverCoins
-    ) {
-      newErrors.items = "Select at least one item to sell.";
-    }
-
-    if (!formData.fullName) newErrors.fullName = "Full name is required.";
-
-    if (!formData.email) newErrors.email = "Email is required.";
-    else if (!/^\S+@\S+\.\S+$/.test(formData.email))
-      newErrors.email = "Enter a valid email.";
-
-    const phoneRegex = /^\+?[0-9\s\-().]{7,20}$/;
-    if (!formData.phone) {
-      newErrors.phone = "Phone number is required.";
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Invalid phone number format.";
-    }
-
-    if (!formData.dropOff) newErrors.dropOff = "Select a drop-off method.";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // ---- Submit ----
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    console.log("Form submitted:", formData);
+  const onSubmit = async (data: InstantSellRequestFormData) => {
+    toast("You submitted the following values:", {
+      description: (
+        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
+          <code>{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+      position: "bottom-right",
+      classNames: {
+        content: "flex flex-col gap-2",
+      },
+      style: {
+        "--border-radius": "calc(var(--radius)  + 4px)",
+      } as React.CSSProperties,
+    });
     router.push("/confirm-request");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* What to sell */}
-      <div className="bg-[#1a1f2e] rounded-lg p-6 mb-8 border border-[#2d3748]">
-        <p className="text-[#fbbf24] font-semibold mb-4">
-          What would you like to sell?
-        </p>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <FieldGroup>
+        <Controller
+          name="items"
+          control={control}
+          render={({ field, fieldState }) => (
+            <div className="bg-[#1a1f2e] rounded-lg p-6 mb-8 border border-[#2d3748]">
+              <p className="text-[#fbbf24] font-semibold mb-4">
+                What would you like to sell?
+              </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {(
-            [
-              ["goldBars", "Gold Bars"],
-              ["goldCoins", "Gold Coins"],
-              ["silverBars", "Silver Bars"],
-              ["silverCoins", "Silver Coins"],
-            ] as const
-          ).map(([key, label]) => (
-            <label
-              key={key}
-              className="flex items-center gap-3 cursor-pointer text-white"
-            >
-              <Checkbox
-                checked={formData[key]}
-                onCheckedChange={(checked: boolean) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    [key]: Boolean(checked),
-                  }))
-                }
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {items.map((item) => (
+                  <label
+                    key={item.id}
+                    className="flex items-center gap-3 cursor-pointer text-white"
+                  >
+                    <Checkbox
+                      id={item.id}
+                      checked={(field.value ?? []).includes(item.id)}
+                      onCheckedChange={(checked) => {
+                        const newValue = checked
+                          ? [...(field.value ?? []), item.id]
+                          : (field.value ?? []).filter(
+                              (value) => value !== item.id
+                            );
+                        field.onChange(newValue);
+                      }}
+                    />
+
+                    <span className="text-sm">{item.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              {fieldState.invalid && (
+                <p className="text-red-400 text-sm mt-2">
+                  {fieldState.error?.message}
+                </p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="name"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Name</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="Enter your name"
               />
-              <span className="text-sm">{label}</span>
-            </label>
-          ))}
-        </div>
 
-        {errors.items && (
-          <p className="text-red-400 text-sm mt-2">{errors.items}</p>
-        )}
-      </div>
-
-      {/* Full Name */}
-      <div>
-        <Input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          value={formData.fullName}
-          onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
         />
-        {errors.fullName && (
-          <p className="text-red-400 text-sm mt-1">{errors.fullName}</p>
-        )}
-      </div>
-
-      {/* Email */}
-      <div>
-        <Input
-          type="email"
+        <Controller
           name="email"
-          placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
-        />
-        {errors.email && (
-          <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-        )}
-      </div>
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="Enter your email"
+              />
 
-      {/* Phone */}
-      <div>
-        <Input
-          type="tel"
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
           name="phone"
-          placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-          className="bg-[#2a2f3f] text-white px-6 py-5 rounded-lg border border-[#3d4250] placeholder-gray-600 focus-visible:ring-[#fbbf24]"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
+              <Input
+                {...field}
+                type="tel"
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="Enter your phone number"
+              />
+
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
         />
-        {errors.phone && (
-          <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
-        )}
-      </div>
+        <Controller
+          name="dropOff"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Drop Off</FieldLabel>
+              <Select
+                onValueChange={(value) => field.onChange(value)}
+                defaultValue={field.value}
+              >
+                <SelectTrigger
+                  className={cn(
+                    "w-full bg-[#2a2f3f] text-gray-400 px-6 py-5 rounded-lg border border-[#3d4250] focus:ring-[#fbbf24]"
+                  )}
+                >
+                  <SelectValue placeholder="I would like to drop off" />
+                </SelectTrigger>
 
-      {/* Drop-off method */}
-      <div>
-        <Select
-          onValueChange={(value) =>
-            setFormData((prev) => ({ ...prev, dropOff: value }))
-          }
-        >
-          <SelectTrigger
-            className={cn(
-              "w-full bg-[#2a2f3f] text-gray-400 px-6 py-5 rounded-lg border border-[#3d4250] focus:ring-[#fbbf24]"
-            )}
-          >
-            <SelectValue placeholder="I would like to drop off" />
-          </SelectTrigger>
+                <SelectContent
+                  id={field.name}
+                  className="bg-[#2a2f3f] text-white border border-[#3d4250]"
+                >
+                  <SelectItem value="In person">In person</SelectItem>
+                  <SelectItem value="By post">By post</SelectItem>
+                  <SelectItem value="Courier">Courier</SelectItem>
+                </SelectContent>
+              </Select>
 
-          <SelectContent className="bg-[#2a2f3f] text-white border border-[#3d4250]">
-            <SelectItem value="In person">In person</SelectItem>
-            <SelectItem value="By post">By post</SelectItem>
-            <SelectItem value="Courier">Courier</SelectItem>
-          </SelectContent>
-        </Select>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+      </FieldGroup>
 
-        {errors.dropOff && (
-          <p className="text-red-400 text-sm mt-1">{errors.dropOff}</p>
-        )}
-      </div>
-
-      {/* Submit */}
       <Button
         variant={"secondary"}
         size={"lg"}

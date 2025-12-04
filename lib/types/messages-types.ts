@@ -1,13 +1,3 @@
-export interface UserMessage {
-  id: string;
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  createdAt: Date;
-  status: "new" | "read";
-}
-
 export interface GoldRequest {
   id: string;
   userName: string;
@@ -22,13 +12,22 @@ export interface GoldRequest {
   status: "pending" | "approved" | "rejected" | "completed";
 }
 
+export interface InstantSellRequest {
+  items: [];
+  name: string;
+  email: string;
+  phone: string;
+  dropOff: string;
+  status: "new" | "reviewed" | "contacted";
+}
+
 export interface ContactMessage {
   id: string;
   name: string;
   email: string;
   subject: string;
   message: string;
-  status: "new" | "read";
+  status: "new" | "reviewed" | "contacted";
   createdAt: string;
   updatedAt: string;
 }

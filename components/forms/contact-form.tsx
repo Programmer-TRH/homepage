@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export default function ContactForm() {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm<ContactMessageFormData>({
     mode: "onChange",
     resolver: zodResolver(ContactMessageSchema),
     defaultValues: {
@@ -24,7 +24,9 @@ export default function ContactForm() {
       status: "new",
     },
   });
+
   const router = useRouter();
+
   const onSubmit = async (data: ContactMessageFormData) => {
     toast("You submitted the following values:", {
       description: (

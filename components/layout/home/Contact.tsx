@@ -1,4 +1,4 @@
-import RequestForm from "@/components/forms/request-form";
+import InstantSellRequestForm from "@/components/forms/request-form";
 
 export default function Contact() {
   return (
@@ -11,7 +11,7 @@ export default function Contact() {
           Fill in the details below and we&apos;ll get back to you
         </p>
 
-        <RequestForm />
+        <InstantSellRequestForm />
       </div>
     </section>
   );
