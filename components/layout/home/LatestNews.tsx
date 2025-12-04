@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { News } from "@/lib/data/News";
+import { posts } from "@/lib/data/News";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +12,7 @@ export default function LatestNews() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {News.slice(0, 3).map((article, index) => (
+          {posts.slice(0, 3).map((article, index) => (
             <div
               key={index}
               className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"

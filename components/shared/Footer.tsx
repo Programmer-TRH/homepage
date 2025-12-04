@@ -29,7 +29,7 @@ export default function Footer() {
                 alt="Logo"
                 width={1080}
                 height={720}
-                className="w-44 h-20"
+                className="w-52 h-26"
               />
             </div>
             <p className="text-xs text-gray-500 text-center">
@@ -61,6 +61,22 @@ export default function Footer() {
               <li>
                 <Link href="/quote" className="hover:text-[#fbbf24] transition">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-conditions"
+                  className="hover:text-[#fbbf24] transition"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-[#fbbf24] transition"
+                >
+                  Privacy & Policy
                 </Link>
               </li>
             </ul>

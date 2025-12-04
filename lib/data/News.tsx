@@ -1,34 +1,15 @@
-import { StaticImageData } from "next/image";
-import NewsImage1 from "@/public/image/News 1.png";
-import NewsImage2 from "@/public/image/News 2.png";
-import NewsImage3 from "@/public/image/News 3.png";
-import NewsImage4 from "@/public/image/News 4.png";
-import NewsImage5 from "@/public/image/News 5.png";
-import NewsImage6 from "@/public/image/News 6.png";
-import NewsImage7 from "@/public/image/News 7.png";
-import NewsImage8 from "@/public/image/News 8.png";
-import NewsImage9 from "@/public/image/News 9.png";
-import { NewsPost } from "../types/blog-types";
+import { NewsPost } from "../types/news-types";
 
-export type NewsItem = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  image: StaticImageData;
-  createdAt: string;
-  content: string;
-};
-
-export const News: NewsItem[] = [
+export const posts: NewsPost[] = [
   {
-    id: 1,
+    id: "1",
     slug: "making-selling-your-gold-easier",
     title: "Making Selling Your Gold Easier",
     description:
       "Selling gold shouldn’t feel complicated. Whether it’s investment bars or inherited pieces, many people delay selling simply because the process feels overwhelming. Here’s how we remove the stress and make the experience simple, safe and transparent.",
-    image: NewsImage1,
+    image: "/image/News 1.png",
     createdAt: "2025-10-01",
+    updatedAt: "2025-10-01",
     content: `
       <p>Selling gold shouldn’t feel complicated. Whether it’s investment bars or inherited pieces, many people delay selling simply because the process feels overwhelming. Here’s how we remove the stress and make the experience simple, safe and transparent.</p>
 
@@ -51,13 +32,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 2,
+    id: "2",
     slug: "a-trusted-global-buyer",
     title: "A Trusted Global Buyer",
     description:
       "With gold trading at record highs, choosing the right buyer matters more than ever. As a global gold-buying company, you’re working with an internationally trusted buyer built on reputation, expertise and committed to fairness and transparency.",
-    image: NewsImage2,
+    image: "/image/News 2.png",
     createdAt: "2025-10-02",
+    updatedAt: "2025-10-02",
     content: `
       <p>With gold trading at record highs, choosing the right buyer matters more than ever. As a global gold-buying company, you’re working with an internationally trusted buyer built on reputation, expertise and committed to fairness and transparency.</p>
 
@@ -78,13 +60,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 3,
+    id: "3",
     slug: "friendly-uk-support-team",
     title: "Friendly UK Support Team",
     description:
       "Selling gold can raise questions and our UK support team is here to help with every step.",
-    image: NewsImage3,
+    image: "/image/News 3.png",
     createdAt: "2025-10-03",
+    updatedAt: "2025-10-03",
     content: `
       <p>Selling gold can raise questions and our UK support team is here to help with every step.</p>
 
@@ -107,13 +90,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 4,
+    id: "4",
     slug: "risk-management-plan-for-selling-gold",
     title: "Risk Management Plan for Selling Gold",
     description:
       "Selling precious metals involves financial decisions and we help clients manage risks effectively.",
-    image: NewsImage4,
+    image: "/image/News 4.png",
     createdAt: "2025-10-04",
+    updatedAt: "2025-10-04",
     content: `
       <p>Selling precious metals involves financial decisions and we help clients manage risks effectively.</p>
 
@@ -139,13 +123,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 5,
+    id: "5",
     slug: "the-essential-guide-to-selling-your-gold",
     title: "The Essential Guide to Selling Your Gold",
     description:
       "Check hallmarks, purity and weight—these factors determine value.",
-    image: NewsImage5,
+    image: "/image/News 5.png",
     createdAt: "2025-10-05",
+    updatedAt: "2025-10-05",
     content: `
       <h2>Step 1: Identify Your Gold</h2>
       <p>Check hallmarks, purity and weight—these factors determine value.</p>
@@ -169,13 +154,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 6,
+    id: "6",
     slug: "buying-and-selling-gold-and-silver",
     title: "Buying and Selling Gold & Silver",
     description:
       "Gold and silver are two of the world’s most traded precious metals but understanding how to buy or sell them can unlock even greater value.",
-    image: NewsImage6,
+    image: "/image/News 6.png",
     createdAt: "2025-10-06",
+    updatedAt: "2025-10-06",
     content: `
       <p>Gold and silver are two of the world’s most traded precious metals but understanding how to buy or sell them can unlock even greater value.</p>
 
@@ -208,13 +194,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 7,
+    id: "7",
     slug: "technical-analysis-on-gold",
     title: "Technical Analysis on Gold",
     description:
       "Technical analysis is a key tool for understanding market trends and price movements, helping investors and sellers alike make informed decisions about when to buy or sell gold. Over the past few years, gold has experienced significant upward momentum due to factors such as inflation, global uncertainty, and strong investor demand. This makes now an opportune time for anyone looking to sell their gold and get the best value.",
-    image: NewsImage7,
+    image: "/image/News 7.png",
     createdAt: "2025-10-07",
+    updatedAt: "2025-10-07",
     content: `
       <p>Technical analysis is a key tool for understanding market trends and price movements, helping investors and sellers alike make informed decisions about when to buy or sell gold. Over the past few years, gold has experienced significant upward momentum due to factors such as inflation, global uncertainty, and strong investor demand. This makes now an opportune time for anyone looking to sell their gold and get the best value.</p>
 
@@ -250,13 +237,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 8,
+    id: "8",
     slug: "know-your-hallmarks",
     title: "Know Your Hallmarks",
     description:
       "A hallmark is your guarantee of authenticity. It confirms purity, origin and compliance with UK law. A hallmark is your assurance that a gold or silver item is genuine. Whether it’s a bar or coin, hallmarks confirm the metal’s purity and authenticity, giving both buyers and sellers confidence.",
-    image: NewsImage8,
+    image: "/image/News 8.png",
     createdAt: "2025-10-08",
+    updatedAt: "2025-10-08",
     content: `
       <p>A hallmark is your guarantee of authenticity. It confirms purity, origin and compliance with UK law. A hallmark is your assurance that a gold or silver item is genuine. Whether it’s a bar or coin, hallmarks confirm the metal’s purity and authenticity, giving both buyers and sellers confidence.</p>
 
@@ -293,13 +281,14 @@ export const News: NewsItem[] = [
   },
 
   {
-    id: 9,
+    id: "9",
     slug: "testimonial-a-clients-profit-journey",
     title: "Testimonial — A Client’s Profit Journey",
     description:
       "What Made the Difference? Patience, rising gold prices and a trusted buyer offering full market value all played key roles, alongside a secure selling process that ensured confidence and peace of mind throughout the transaction.",
-    image: NewsImage9,
+    image: "/image/News 9.png",
     createdAt: "2025-10-09",
+    updatedAt: "2025-10-09",
     content: `
       <blockquote>
         “I bought £20,000 worth of gold bars around 12 oz worth, this was two years ago as a way of protecting my savings. I couldn’t be happier because selling with We Buy Gold Now has been absolutely seamless from start to finish. The team explained everything clearly, gave me a fair price based on the live market and processed my payment the same day. I walked away with a profit I honestly didn’t expect over £17,000. I couldn’t be happier and I’ll definitely be recommending to any family or friends looking to sell their gold for instant cash.”
@@ -332,26 +321,5 @@ export const News: NewsItem[] = [
 
       <p><strong>Contact:</strong> 0208 080 2848, <strong>Email:</strong> info@webuygoldnow.co.uk, or visit Old Town Hall, 30 Tweedy Rd, Bromley BR1 3FE.</p>
     `,
-  },
-];
-
-// In-memory storage for demo (replace with database)
-export const posts: NewsPost[] = [
-  {
-    id: "1",
-    title: "Getting Started with Next.js",
-    slug: "getting-started-nextjs",
-    excerpt:
-      "Learn the fundamentals of building modern web applications with Next.js and React.",
-    content:
-      "<h2>Introduction</h2><p>Next.js is a powerful React framework that makes it easy to build production-ready applications.</p>",
-    category: "Development",
-    author: "John Doe",
-    image: "/nextjs-logo.png",
-    featured: true,
-    published: true,
-    publishedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-    updatedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
   },
 ];

@@ -1,12 +1,3 @@
-export interface News {
-  id: string;
-  title: string;
-  content: string;
-  image?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export interface UserMessage {
   id: string;
   name: string;
@@ -23,7 +14,7 @@ export interface GoldRequest {
   email: string;
   phone: string;
   goldQuantity: number;
-  goldType: "gold_bars" | "gold_coins" | "gold_jewelry";
+  goldType: "gold_bars" | "gold_coins";
   unitPrice: number;
   totalPrice: number;
   description?: string;

@@ -2,23 +2,11 @@
 
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import { useState } from "react";
 import { Loader2 } from "lucide-react";
-
 import { NewsPostFormData, NewsPostSchema } from "@/lib/schema/news-schema";
-import { BLOG_CATEGORIES } from "@/lib/types/blog-types";
 import {
   Field,
   FieldDescription,
@@ -27,57 +15,65 @@ import {
   FieldLabel,
 } from "../ui/field";
 import { RichEditor } from "../editor/rich-editor";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-interface BlogEditorProps {
-  initialData?: any;
-  onSubmit: (data: NewsPostFormData) => Promise<void>;
-  isLoading?: boolean;
+interface BlogEditorFormProps {
+  postId?: string;
+  initialData?: NewsPostFormData;
+  mode?: "add" | "edit";
 }
 
-export function BlogEditor({
+export function BlogEditorForm({
+  postId,
   initialData,
-  onSubmit,
-  isLoading,
-}: BlogEditorProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
+  mode = "add",
+}: BlogEditorFormProps) {
   const form = useForm<NewsPostFormData>({
     resolver: zodResolver(NewsPostSchema),
     defaultValues: initialData || {
+      slug: "",
       title: "",
-      excerpt: "",
+      description: "",
       content: "",
-      category: "Technology",
-      author: "",
       image: "",
-      featured: false,
-      published: false,
     },
   });
-
-  const handleDraft = () => {
-    const currentValues = form.getValues();
-    onSubmit({
-      ...currentValues,
-      published: false,
-    });
-  };
+  const router = useRouter();
 
   const SubmitForm = async (data: NewsPostFormData) => {
     console.log("Data:", data);
     console.log("Images:", data.content);
 
     try {
-      setIsSubmitting(true);
+      if (mode === "add") {
+        // Create new post
+        const response = await fetch("/api/blog", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
 
-      await onSubmit({
-        ...data,
-        published: true,
-      });
+        if (!response.ok) throw new Error("Failed to create post");
+
+        toast.success("Post published successfully!");
+      } else if (mode === "edit") {
+        // Update existing post
+        const response = await fetch(`/api/blog/${postId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) throw new Error("Failed to update post");
+
+        toast.success("Post updated successfully!");
+      }
+
+      router.push("/admin");
     } catch (error) {
+      toast.error((error as Error).message);
       console.error("Error submitting post:", error);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -109,20 +105,40 @@ export function BlogEditor({
 
         <Controller
           control={form.control}
-          name="excerpt"
+          name="slug"
           render={({ field, fieldState }) => (
             <Field>
-              <FieldLabel htmlFor={field.name}>Excerpt</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Slug</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="Enter slug..."
+                className="text-lg font-semibold"
+              />
+              <FieldDescription>This is for blog link</FieldDescription>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="description"
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name}>Description</FieldLabel>
 
               <Textarea
                 {...field}
                 id={field.name}
+                aria-invalid={fieldState.invalid}
                 placeholder="Brief summary of your post..."
                 rows={3}
               />
 
               <FieldDescription>
-                Appears in blog listings (max 300 characters)
+                Appears in blog card (max 300 characters)
               </FieldDescription>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -139,6 +155,7 @@ export function BlogEditor({
               <RichEditor
                 content={field.value}
                 onChange={field.onChange}
+                aria-invalid={fieldState.invalid}
                 placeholder="Write your news here..."
               />
 
@@ -147,61 +164,19 @@ export function BlogEditor({
           )}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Controller
-            control={form.control}
-            name="category"
-            render={({ field, fieldState }) => (
-              <Field>
-                <FieldLabel htmlFor={field.name}>Category</FieldLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
-                  </SelectTrigger>
-
-                  <SelectContent id={field.name}>
-                    {BLOG_CATEGORIES.map((cat) => (
-                      <SelectItem key={cat} value={cat}>
-                        {cat}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-
-          <Controller
-            control={form.control}
-            name="author"
-            render={({ field, fieldState }) => (
-              <Field>
-                <FieldLabel>Author</FieldLabel>
-
-                <Input placeholder="Your name" {...field} />
-
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-        </div>
-
         <Controller
           control={form.control}
           name="image"
           render={({ field, fieldState }) => (
             <Field>
-              <FieldLabel>Featured Image URL</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Featured Image URL</FieldLabel>
 
-              <Input placeholder="https://example.com/image.jpg" {...field} />
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                placeholder="https://example.com/image.jpg"
+              />
 
               <FieldDescription>
                 URL to the featured image for your post
@@ -215,21 +190,19 @@ export function BlogEditor({
       <div className="flex gap-4">
         <Button
           type="submit"
-          disabled={isSubmitting || isLoading}
+          disabled={form.formState.isLoading}
           className="bg-primary hover:bg-primary/90"
         >
-          {(isSubmitting || isLoading) && (
+          {form.formState.isLoading && (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           )}
-          {isSubmitting || isLoading ? "Publishing..." : "Publish Post"}
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handleDraft}
-          disabled={isSubmitting || isLoading}
-        >
-          Save Draft
+          {mode === "add"
+            ? form.formState.isLoading
+              ? "Publishing..."
+              : "Publish Post"
+            : form.formState.isLoading
+            ? "Editing..."
+            : "Edit Post"}
         </Button>
       </div>
     </form>

@@ -1,21 +1,15 @@
-import Image from "next/image";
-import HeroImage from "@/public/image/Home Hero.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Hero() {
   return (
     <section
-      className="relative w-full h-dvh overflow-hidden flex items-center"
       id="hero"
+      className="relative w-full h-dvh overflow-hidden flex items-center bg-cover max-md:bg-center bg-top-right bg-no-repeat"
+      style={{
+        backgroundImage: "url('/image/Home Hero.png')",
+      }}
     >
-      <Image
-        src={HeroImage}
-        alt="Home Hero Image"
-        width={1080}
-        height={720}
-        className="absolute inset-0 bg-cover bg-center size-full opacity-80"
-      />
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/70 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">

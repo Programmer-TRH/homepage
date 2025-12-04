@@ -35,10 +35,10 @@ export default function ContactSection() {
           {/* Left Side - Contact Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-[#c4a564] font-semibold text-lg mb-4">
+              <h3 className="text-gray-800 font-semibold text-lg mb-4">
                 We&apos;d like to hear from you!
               </h3>
-              <p className="text-[#c4a564] text-sm leading-relaxed mb-8">
+              <p className=" text-gray-700 text-sm leading-relaxed mb-8">
                 If you have any enquiries, want to know more information or just
                 want to say hi, please use the contact form or contact us on the
                 details below:

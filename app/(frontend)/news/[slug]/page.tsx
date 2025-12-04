@@ -1,13 +1,13 @@
-import { News } from "@/lib/data/News";
+import { posts } from "@/lib/data/News";
 import Image from "next/image";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blog = News.find((b) => b.slug === slug);
+  const blog = posts.find((b) => b.slug === slug);
 
   return {
     title: blog?.title || "Blog",
@@ -18,10 +18,10 @@ export async function generateMetadata({
 export default async function SingleBlogPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blog = News.find((b) => b.slug === slug);
+  const blog = posts.find((b) => b.slug === slug);
 
   if (!blog) {
     return <div>Blog not found</div>;
@@ -40,7 +40,7 @@ export default async function SingleBlogPage({
         alt={blog.title}
         width={720}
         height={480}
-        className="w-full h-80 mt-4"
+        className="w-full max-h-80 mt-4"
       />
     </div>
   );

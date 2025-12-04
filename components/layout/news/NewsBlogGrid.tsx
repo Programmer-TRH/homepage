@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { News } from "@/lib/data/News";
+import { posts } from "@/lib/data/News";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,9 +12,9 @@ export default function NewsBlogGrid() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {News.map((article, index) => (
+          {posts.map((article) => (
             <div
-              key={index}
+              key={article.id}
               className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
             >
               <Image

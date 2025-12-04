@@ -1,17 +1,11 @@
-import Image from "next/image";
-import QuoteHeroImage from "@/public/image/view-ornamental-clock-london-city.jpg";
-
 export default function QuoteHero() {
   return (
-    <section className="relative w-full h-96 md:h-[80vh] mt-16 overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src={QuoteHeroImage}
-        alt="Home Hero Image"
-        width={1080}
-        height={1080}
-        className="absolute inset-0 size-full bg-bottom-left bg-cover"
-      />
+    <section
+      className="relative w-full h-96 md:h-[80vh] mt-16 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/image/view-ornamental-clock-london-city.jpg')",
+      }}
+    >
       <div className="absolute inset-0 bg-black/50 h-full" />
       {/* Content */}
       <div className="relative h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

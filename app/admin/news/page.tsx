@@ -11,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { format } from "date-fns";
 import { Edit, Trash2, Plus, Eye } from "lucide-react";
-import { NewsPost } from "@/lib/types/blog-types";
+import { NewsPost } from "@/lib/types/news-types";
 
 export default function AdminDashboard() {
   const [posts, setPosts] = useState<NewsPost[]>([]);
@@ -76,9 +75,6 @@ export default function AdminDashboard() {
                 <TableHeader>
                   <TableRow className="border-b border-border">
                     <TableHead>Title</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Author</TableHead>
-                    <TableHead>Status</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
@@ -92,15 +88,7 @@ export default function AdminDashboard() {
                       <TableCell className="font-medium max-w-xs truncate">
                         {post.title}
                       </TableCell>
-                      <TableCell>{post.category}</TableCell>
-                      <TableCell>{post.author}</TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={post.published ? "default" : "secondary"}
-                        >
-                          {post.published ? "Published" : "Draft"}
-                        </Badge>
-                      </TableCell>
+
                       <TableCell className="text-sm text-muted-foreground">
                         {format(new Date(post.createdAt), "MMM dd, yyyy")}
                       </TableCell>
@@ -133,7 +121,7 @@ export default function AdminDashboard() {
           ) : (
             <div className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No posts yet</p>
-              <Link href="/admin/editor">
+              <Link href="/admin/news/add">
                 <Button>Create your first post</Button>
               </Link>
             </div>

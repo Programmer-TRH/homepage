@@ -1,75 +1,17 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Loader2 } from "lucide-react";
-import { NewsPost } from "@/lib/types/blog-types";
-import { NewsPostFormData } from "@/lib/schema/news-schema";
-import { BlogEditor } from "@/components/forms/blog-form";
-import { toast } from "sonner";
+import { ChevronLeft } from "lucide-react";
+import { BlogEditorForm } from "@/components/forms/blog-form";
 
-export default function EditPostPage() {
-  const router = useRouter();
-  const params = useParams();
-  const [post, setPost] = useState<NewsPost | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default async function EditPostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
-  const postId = Array.isArray(params.id) ? params.id[0] : params.id;
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch(`/api/blog/${postId}`);
-        if (!response.ok) throw new Error("Post not found");
-        const data = await response.json();
-        setPost(data);
-      } catch (error) {
-        toast.error((error as Error).message);
-        router.push("/admin");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPost();
-  }, [postId, router]);
-
-  const handleSubmit = async (data: NewsPostFormData) => {
-    if (!post) return;
-
-    try {
-      setIsSubmitting(true);
-      const response = await fetch(`/api/blog/${post.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) throw new Error("Failed to update post");
-
-      toast.success(
-        data.published
-          ? "Post published successfully!"
-          : "Draft saved successfully!"
-      );
-
-      router.push("/admin");
-    } catch (error) {
-      toast.error((error as Error).message);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="animate-spin h-8 w-8 text-primary" />
-      </main>
-    );
-  }
+  const response = await fetch(`http://localhost:3000/api/blog/${id}`);
+  const post = await response.json();
 
   return (
     <main className="min-h-screen bg-background">
@@ -86,13 +28,7 @@ export default function EditPostPage() {
           <p className="text-muted-foreground">Update your blog post</p>
         </div>
 
-        {post && (
-          <BlogEditor
-            initialData={post}
-            onSubmit={handleSubmit}
-            isLoading={isSubmitting}
-          />
-        )}
+        {post && <BlogEditorForm initialData={post} postId={id} mode="edit" />}
       </div>
     </main>
   );

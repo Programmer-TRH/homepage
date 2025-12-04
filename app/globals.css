@@ -20,7 +20,7 @@
   --accent: #fbbf24;
   --accent-foreground: #0f1419;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(63.077% 0.25463 27.959);
   --border: #2d3748;
   --input: #2d3748;
   --ring: oklch(0.708 0 0);
@@ -211,6 +211,14 @@
   .ProseMirror p:empty::before {
     content: "\u00A0";
     @apply my-2 block;
+  }
+
+  .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #9ca3af; /* text-gray-400 */
+    pointer-events: none;
+    height: 0;
   }
 
   .ProseMirror h1 {

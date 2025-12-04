@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Newspaper, Mail, Coins } from "lucide-react";
-import { GoldRequest, News, UserMessage } from "@/lib/types/admin";
+import { GoldRequest, UserMessage } from "@/lib/types/messages-types";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({

@@ -1,5 +1,5 @@
 import { NewsPostSchema } from "@/lib/schema/news-schema";
-import { NewsPost } from "@/lib/types/blog-types";
+import { NewsPost } from "@/lib/types/news-types";
 import { NextRequest, NextResponse } from "next/server";
 
 // Reference to in-memory posts

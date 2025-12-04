@@ -62,7 +62,11 @@ export function RichEditor({
         },
       }),
       Dropcursor,
-      Placeholder.configure({ placeholder }),
+      Placeholder.configure({
+        placeholder,
+        emptyNodeClass: "is-editor-empty",
+        showOnlyWhenEditable: true,
+      }),
     ],
     content,
     editable,
