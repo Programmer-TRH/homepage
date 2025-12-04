@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-dvh overflow-hidden flex items-center bg-cover max-md:bg-center bg-top-right bg-no-repeat"
+      className="relative w-full h-dvh overflow-hidden flex items-center bg-cover max-md:bg-center bg-top-right bg-no-repeat "
       style={{
         backgroundImage: "url('/image/Home Hero.png')",
       }}

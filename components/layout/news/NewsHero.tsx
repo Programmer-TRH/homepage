@@ -1,7 +1,7 @@
 export default function NewsHero() {
   return (
     <section
-      className="relative w-full h-64 md:h-[80vh] mt-16 bg-cover bg-center bg-no-repeat"
+      className="relative w-full h-64 md:h-[80vh] mt-26 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/image/view-ornamental-clock-london-city.jpg')",
       }}
