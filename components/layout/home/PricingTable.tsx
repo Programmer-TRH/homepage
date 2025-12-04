@@ -1,4 +1,8 @@
-export default function PricingTable() {
+import { getScrapPrices } from "@/actions/prices";
+
+export default async function PricingTable() {
+  const data = await getScrapPrices();
+  console.log("DATA:", data);
   const goldCoins = [
     { size: "9ct", price: "£31.48" },
     { size: "14ct", price: "£69.62" },
