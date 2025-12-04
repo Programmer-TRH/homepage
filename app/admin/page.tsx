@@ -39,21 +39,18 @@ export default function AdminDashboard() {
       value: stats.newsCount,
       icon: Newspaper,
       color: "from-amber-500 to-orange-600",
-      href: "/admin-gold/news",
     },
     {
       label: "User Messages",
       value: stats.messageCount,
       icon: Mail,
       color: "from-blue-500 to-blue-600",
-      href: "/admin-gold/messages",
     },
     {
       label: "Gold Requests",
       value: stats.requestCount,
       icon: Coins,
       color: "from-yellow-500 to-amber-600",
-      href: "/admin-gold/requests",
     },
   ];
 

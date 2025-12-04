@@ -16,7 +16,7 @@ export default async function EditPostPage({
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
-        <Link href="/admin">
+        <Link href="/admin/news">
           <Button variant="ghost" className="gap-2 mb-8">
             <ChevronLeft size={20} />
             Back to Dashboard
