@@ -1,32 +1,25 @@
-import { MongoClient, ServerApiVersion, Db } from "mongodb";
+import { Db, MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI!;
-const dbName = process.env.MONGODB_DB!;
+const uri = process.env.MONGODB_URI as string;
+const dbName = process.env.MONGODB_DB as string;
 
-if (!uri) throw new Error("❌ Missing MONGODB_URI");
-if (!dbName) throw new Error("❌ Missing MONGODB_DB");
+if (!uri) throw new Error("Missing MONGODB_URI");
+if (!dbName) throw new Error("Missing MONGODB_DB");
 
 declare global {
-  // Prevent TypeScript errors (reuse global)
-  var _db: Db | undefined;
-  var _mongoClient: MongoClient | undefined;
+  // Needed for Next.js hot reload
+  // Must extend global namespace
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-if (!global._db) {
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-
-  global._mongoClient = client;
-
-  // Connect immediately (top-level await alternative)
-  const connection = await client.connect();
-  global._db = connection.db(dbName);
+if (!global._mongoClientPromise) {
+  const client = new MongoClient(uri);
+  global._mongoClientPromise = client.connect();
 }
 
-const db: Db = global._db;
-export default db;
+const clientPromise: Promise<MongoClient> = global._mongoClientPromise;
+
+export async function connectToDatabase(): Promise<Db> {
+  const client = await clientPromise;
+  return client.db(dbName);
+}

@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { toast } from "sonner";
 
 import {
@@ -17,44 +16,26 @@ import { Button } from "@/components/ui/button";
 import { FileIcon, FileText, Upload, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import {
+  ACCEPTED_TYPES,
+  QuoteDetailsUploadFormData,
+  QuoteDetailsUploadSchema,
+} from "@/lib/schema/contact-schema";
 
-// -------------------------------------
-// ZOD SCHEMA (with file validation)
-// -------------------------------------
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
-
-const formSchema = z.object({
-  fullName: z.string().min(2, "Full Name must be at least 2 characters."),
-  phone: z.string().min(8, "Phone number is not valid."),
-  email: z.email("Invalid email address."),
-  files: z
-    .array(
-      z
-        .instanceof(File)
-        .refine((file) => file.size <= MAX_FILE_SIZE, "Max file size is 5MB")
-        .refine(
-          (file) => ACCEPTED_TYPES.includes(file.type),
-          "Only JPG, PNG or PDF allowed."
-        )
-    )
-    .min(1, "At least one file is required.")
-    .max(3, "You can upload a maximum of 3 files."),
-});
-
-export default function UploadDetails() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+export default function UploadDetailsForm() {
+  const form = useForm<QuoteDetailsUploadFormData>({
+    resolver: zodResolver(QuoteDetailsUploadSchema),
     mode: "onChange",
     defaultValues: {
       fullName: "",
       email: "",
       phone: "",
       files: [],
+      status: "new",
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: QuoteDetailsUploadFormData) => {
     const displayData = {
       fullName: data.fullName,
       phone: data.phone,
@@ -88,7 +69,6 @@ export default function UploadDetails() {
       formData.append("phone", data.phone);
       formData.append("email", data.email);
 
-      // Append files
       data.files.forEach((file) => {
         formData.append("files", file);
       });
@@ -187,6 +167,7 @@ export default function UploadDetails() {
                   <FieldLabel htmlFor="phone">Phone</FieldLabel>
                   <Input
                     {...field}
+                    type="tel"
                     id="phone"
                     aria-invalid={fieldState.invalid}
                     placeholder="+1 (697) 315-4224"

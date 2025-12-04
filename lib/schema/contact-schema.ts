@@ -46,3 +46,29 @@ export const InstantSellRequestSchema = z.object({
 export type InstantSellRequestFormData = z.infer<
   typeof InstantSellRequestSchema
 >;
+
+export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+export const ACCEPTED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
+
+export const QuoteDetailsUploadSchema = z.object({
+  fullName: z.string().min(2, "Full Name must be at least 2 characters."),
+  phone: z.string().min(8, "Phone number is not valid."),
+  email: z.email("Invalid email address."),
+  files: z
+    .array(
+      z
+        .instanceof(File)
+        .refine((file) => file.size <= MAX_FILE_SIZE, "Max file size is 5MB")
+        .refine(
+          (file) => ACCEPTED_TYPES.includes(file.type),
+          "Only JPG, PNG or PDF allowed."
+        )
+    )
+    .min(1, "At least one file is required.")
+    .max(3, "You can upload a maximum of 3 files."),
+  status: z.enum(["new", "reviewed", "contacted"]),
+});
+
+export type QuoteDetailsUploadFormData = z.infer<
+  typeof QuoteDetailsUploadSchema
+>;

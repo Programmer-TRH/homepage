@@ -1,7 +1,7 @@
 export default function ContactHero() {
   return (
     <section
-      className="relative w-full h-64 md:h-[80vh] mt-26 bg-cover bg-center bg-no-repeat"
+      className="relative w-full h-64 md:h-[80vh] mt-16 sm:mt-20 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/image/view-city-bridge-with-train-london.jpg')",
       }}

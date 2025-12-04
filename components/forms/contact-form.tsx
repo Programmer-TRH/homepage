@@ -11,6 +11,7 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { createContactMessageAction } from "@/actions/contact";
 
 export default function ContactForm() {
   const { handleSubmit, control } = useForm<ContactMessageFormData>({
@@ -42,7 +43,14 @@ export default function ContactForm() {
         "--border-radius": "calc(var(--radius)  + 4px)",
       } as React.CSSProperties,
     });
-    router.push("/confirm-request");
+
+    const result = await createContactMessageAction(data);
+    if (result.success) {
+      toast.success(result.message);
+      router.push("/confirm-request");
+    } else {
+      toast.error(result.message);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black ">

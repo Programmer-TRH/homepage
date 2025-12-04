@@ -1,7 +1,8 @@
-import db from "@/lib/db";
+import { connectToDatabase } from "@/lib/db";
 import { NewsPost } from "@/lib/types/news-types";
 
 export async function getNewsPosts() {
+  const db = await connectToDatabase();
   const posts = await db
     .collection("news-posts")
     .find({})
@@ -11,8 +12,11 @@ export async function getNewsPosts() {
 }
 
 export async function createNewsPost(data: NewsPost) {
+  const db = await connectToDatabase();
   const result = await db.collection("news-posts").insertOne(data);
-  if (!result.insertedId) throw new Error("News post creation failed");
+  if (!result.insertedId) {
+    return { message: "News post creation failed" };
+  }
   return {
     message: "News post created successfully",
   };

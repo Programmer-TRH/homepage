@@ -68,7 +68,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Posts Table */}
-        <div className="bg-card border border-border rounded-lg overflow-hidden">
+        <div className="bg-card border border-border rounded-lg overflow-hidden px-4 py-2">
           {posts.length > 0 ? (
             <div className="overflow-x-auto">
               <Table>
