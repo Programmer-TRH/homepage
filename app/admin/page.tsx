@@ -1,37 +1,12 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Newspaper, Mail, Coins } from "lucide-react";
-import { GoldRequest, UserMessage } from "@/lib/types/messages-types";
-import { NewsPost } from "@/lib/types/news-types";
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({
+  const stats = {
     newsCount: 0,
     messageCount: 0,
     requestCount: 0,
-  });
-
-  useEffect(() => {
-    const savedNews = localStorage.getItem("adminNews");
-    const savedMessages = localStorage.getItem("userMessages");
-    const savedRequests = localStorage.getItem("goldRequests");
-
-    const news: NewsPost[] = savedNews ? JSON.parse(savedNews) : [];
-    const messages: UserMessage[] = savedMessages
-      ? JSON.parse(savedMessages)
-      : [];
-    const requests: GoldRequest[] = savedRequests
-      ? JSON.parse(savedRequests)
-      : [];
-
-    setStats({
-      newsCount: news.length,
-      messageCount: messages.length,
-      requestCount: requests.length,
-    });
-  }, []);
+  };
 
   const statCards = [
     {
