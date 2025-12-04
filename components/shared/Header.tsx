@@ -11,14 +11,14 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full bg-(--header) z-50 border-b border-[#3d4250] font-gilory">
-      <div className="max-w-7xl w-full px-2 md:px-4 h-18 mx-auto flex items-center justify-between">
+      <div className="max-w-7xl w-full px-2 md:px-4 h-28 mx-auto flex items-center justify-between">
         <Link href="/">
           <Image
             src={LOGO}
             alt="Logo"
-            width={1080}
-            height={720}
-            className="w-52 h-26"
+            width={1440}
+            height={1080}
+            className="w-72 h-40"
           />
         </Link>
 

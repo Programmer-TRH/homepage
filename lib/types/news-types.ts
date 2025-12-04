@@ -1,4 +1,4 @@
-export type NewsPost = {
+export interface NewsPost {
   id: string;
   slug: string;
   title: string;
@@ -7,7 +7,7 @@ export type NewsPost = {
   content: string;
   createdAt: string;
   updatedAt: string;
-};
+}
 
 export interface CreateNewsPostInput {
   slug: string;
