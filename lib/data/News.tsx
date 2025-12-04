@@ -256,8 +256,7 @@ export const posts: NewsPost[] = [
         <li>Optional Additional Marks — These may include date marks, commemorative symbols, or country-specific certification stamps.</li>
       </ul>
 
-      <p><!-- image should appear mid-content --></p>
-      <p><img src="/images/know-your-hallmarks-figure.jpg" alt="Hallmark example" style="display:block;margin:1rem auto;max-width:100%;" /></p>
+      <p><img src="/image/Hallmark Image.png" alt="Hallmark example" style="display:block;width:100%;" /></p>
 
       <h2>Why Hallmarks Matter When Selling Gold or Silver</h2>
       <p>Hallmarks provide immediate clarity about authenticity and purity. This makes the valuation process quicker, more accurate, and more transparent. Whether you're selling gold coins, silver bars, bullion rounds, or investment-grade pieces, clear hallmarks help ensure you receive a fair and competitive price.</p>
