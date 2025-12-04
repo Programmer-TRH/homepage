@@ -11,6 +11,9 @@ export async function getNewsPosts() {
 }
 
 export async function createNewsPost(data: NewsPost) {
-  await db.collection("news-posts").insertOne(data);
-  return { success: true };
+  const result = await db.collection("news-posts").insertOne(data);
+  if (!result.insertedId) throw new Error("News post creation failed");
+  return {
+    message: "News post created successfully",
+  };
 }

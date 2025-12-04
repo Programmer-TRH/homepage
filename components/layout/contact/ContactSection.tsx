@@ -1,29 +1,7 @@
-"use client";
-
-import { useState } from "react";
 import { Phone, Mail } from "lucide-react";
+import ContactForm from "@/components/forms/contact-form";
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
-
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,76 +64,7 @@ export default function ContactSection() {
               Please note fields marked with an {"*"} are mandatory
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
-              <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
-                  Name <span className="text-[#c4a564]">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#c4a564] transition text-gray-800"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
-                  Email <span className="text-[#c4a564]">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#c4a564] transition text-gray-800"
-                />
-              </div>
-
-              {/* Subject */}
-              <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
-                  Subject <span className="text-[#c4a564]">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#c4a564] transition text-gray-800"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-2">
-                  Message <span className="text-[#c4a564]">*</span>
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#c4a564] transition text-gray-800"
-                />
-                <p className="text-gray-500 text-xs mt-2">© 2000 characters</p>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full md:w-auto bg-[#c4a564] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#b89456] transition"
-              >
-                SUBMIT
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

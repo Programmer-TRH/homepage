@@ -5,7 +5,7 @@ export interface UserMessage {
   subject: string;
   message: string;
   createdAt: Date;
-  status: "new" | "read" | "replied";
+  status: "new" | "read";
 }
 
 export interface GoldRequest {
@@ -20,4 +20,15 @@ export interface GoldRequest {
   description?: string;
   createdAt: Date;
   status: "pending" | "approved" | "rejected" | "completed";
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  status: "new" | "read";
+  createdAt: string;
+  updatedAt: string;
 }

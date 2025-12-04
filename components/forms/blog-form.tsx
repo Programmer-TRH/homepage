@@ -101,7 +101,7 @@ export function BlogEditorForm({
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter an engaging title..."
-                className="text-lg font-semibold"
+                className="text-lg font-medium"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -121,7 +121,7 @@ export function BlogEditorForm({
                 value={slug}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter slug..."
-                className="text-lg font-semibold"
+                className="text-lg font-medium"
               />
               <FieldDescription>This is for blog link</FieldDescription>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
