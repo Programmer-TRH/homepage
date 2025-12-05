@@ -1,24 +1,26 @@
-export interface GoldRequest {
+import { UploadedImage } from "@/actions/cloudinary-action";
+
+export interface UploadDetails {
   id: string;
-  userName: string;
+  name: string;
   email: string;
   phone: string;
-  goldQuantity: number;
-  goldType: "gold_bars" | "gold_coins";
-  unitPrice: number;
-  totalPrice: number;
-  description?: string;
-  createdAt: Date;
-  status: "pending" | "approved" | "rejected" | "completed";
+  images: UploadedImage[];
+  status: "new" | "reviewed" | "contacted";
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface InstantSellRequest {
+  id: string;
   items: [];
   name: string;
   email: string;
   phone: string;
   dropOff: string;
   status: "new" | "reviewed" | "contacted";
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ContactMessage {

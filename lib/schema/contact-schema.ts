@@ -51,16 +51,16 @@ export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 export const ACCEPTED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
 export const QuoteDetailsUploadSchema = z.object({
-  fullName: z.string().min(2, "Full Name must be at least 2 characters."),
+  name: z.string().min(2, "Full Name must be at least 2 characters."),
   phone: z.string().min(8, "Phone number is not valid."),
   email: z.email("Invalid email address."),
-  files: z
+  images: z
     .array(
       z
         .instanceof(File)
-        .refine((file) => file.size <= MAX_FILE_SIZE, "Max file size is 5MB")
+        .refine((image) => image.size <= MAX_FILE_SIZE, "Max file size is 5MB")
         .refine(
-          (file) => ACCEPTED_TYPES.includes(file.type),
+          (image) => ACCEPTED_TYPES.includes(image.type),
           "Only JPG, PNG or PDF allowed."
         )
     )

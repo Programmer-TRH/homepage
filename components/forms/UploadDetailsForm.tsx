@@ -1,10 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-
 import {
   Field,
   FieldLabel,
@@ -14,90 +11,48 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileIcon, FileText, Upload, X } from "lucide-react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 import {
   ACCEPTED_TYPES,
   QuoteDetailsUploadFormData,
   QuoteDetailsUploadSchema,
 } from "@/lib/schema/contact-schema";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+import { UploadDetailsAction } from "@/actions/request-action";
 
 export default function UploadDetailsForm() {
   const form = useForm<QuoteDetailsUploadFormData>({
     resolver: zodResolver(QuoteDetailsUploadSchema),
     mode: "onChange",
     defaultValues: {
-      fullName: "",
+      name: "",
       email: "",
       phone: "",
-      files: [],
+      images: [],
       status: "new",
     },
   });
 
   const onSubmit = async (data: QuoteDetailsUploadFormData) => {
-    const displayData = {
-      fullName: data.fullName,
-      phone: data.phone,
-      email: data.email,
-      files: data.files.map((file) => ({
-        name: file.name,
-        size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
-        type: file.type,
-      })),
-    };
-
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(displayData, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("phone", data.phone);
+    formData.append("email", data.email);
+    data.images.forEach((image) => {
+      formData.append("images", image);
     });
 
     try {
-      const formData = new FormData();
-
-      formData.append("fullName", data.fullName);
-      formData.append("phone", data.phone);
-      formData.append("email", data.email);
-
-      data.files.forEach((file) => {
-        formData.append("files", file);
-      });
-
-      // // Send to backend
-      // const response = await fetch("/api/upload", {
-      //   method: "POST",
-      //   body: formData,
-      // });
-
-      // if (!response.ok) {
-      //   throw new Error("Upload failed");
-      // }
-
-      // const result = await response.json();
-
-      // Show success toast
-      toast.success("Form submitted successfully!", {
-        description: `${data.files.length} file(s) uploaded to Cloudinary`,
-      });
-
-      console.log("Files:", data.files);
+      const result = await UploadDetailsAction(formData);
+      if (!result.success) {
+        toast.error(result.message);
+        return;
+      }
+      toast.success(result.message);
       form.reset();
     } catch (error) {
-      // Show error toast
-      toast.error("Upload failed", {
-        description:
-          error instanceof Error ? error.message : "Please try again",
-      });
+      toast.error(`Upload failed: ${(error as Error).message}`);
 
       console.error("Upload error:", error);
     }
@@ -118,14 +73,14 @@ export default function UploadDetailsForm() {
           <FieldGroup>
             {/* Full Name */}
             <Controller
-              name="fullName"
+              name="name"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="fullName">Full Name</FieldLabel>
+                  <FieldLabel htmlFor="name">Name</FieldLabel>
                   <Input
                     {...field}
-                    id="fullName"
+                    id="name"
                     aria-invalid={fieldState.invalid}
                     placeholder="Enter your Full Name here"
                     autoComplete="off"
@@ -183,7 +138,7 @@ export default function UploadDetailsForm() {
             {/* FILE UPLOAD */}
 
             <Controller
-              name="files"
+              name="images"
               control={form.control}
               render={({
                 field: { onChange, value, ...field },
@@ -210,7 +165,7 @@ export default function UploadDetailsForm() {
                           <p className="text-sm text-gray-600">
                             <span className="font-semibold">
                               Click to upload
-                            </span>{" "}
+                            </span>
                             or drag and drop
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
