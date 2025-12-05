@@ -13,7 +13,12 @@ export async function createContactMessage(data: ContactMessage) {
 
 export async function getContactMessage() {
   const { isAuth } = await isAuthenticated();
-  if (!isAuth) return;
+  if (!isAuth) {
+    return {
+      success: false,
+      data: [],
+    };
+  }
 
   const db = await connectToDatabase();
   const messages = await db
@@ -21,5 +26,5 @@ export async function getContactMessage() {
     .find({})
     .project({ _id: 0 })
     .toArray();
-  return messages as ContactMessage[];
+  return { success: true, data: messages as ContactMessage[] };
 }

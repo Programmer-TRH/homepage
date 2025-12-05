@@ -12,7 +12,7 @@ import { getContactMessage } from "@/services/contact";
 import { Eye, Trash2 } from "lucide-react";
 
 export default async function SupportPage() {
-  const messages = await getContactMessage();
+  const { data: messages } = await getContactMessage();
   console.log("Messages:", messages);
   return (
     <main className=" min-h-screen bg-background">
