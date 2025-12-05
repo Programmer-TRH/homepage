@@ -1,4 +1,3 @@
-import { isAuthenticated } from "@/dal/isAuthenticated";
 import { connectToDatabase } from "@/lib/db";
 import { ContactMessage } from "@/lib/types/messages-types";
 
@@ -11,8 +10,7 @@ export async function createContactMessage(data: ContactMessage) {
   return { message: "Message submited successfully." };
 }
 
-export async function getContactMessage() {
-  const { isAuth } = await isAuthenticated();
+export async function getContactMessage({ isAuth }: { isAuth: boolean }) {
   if (!isAuth) {
     return {
       success: false,

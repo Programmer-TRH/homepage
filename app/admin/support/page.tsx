@@ -7,13 +7,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { isAuthenticated } from "@/dal/isAuthenticated";
 import { FormatDateTime } from "@/lib/format-date-time";
 import { getContactMessage } from "@/services/contact";
 import { Eye, Trash2 } from "lucide-react";
 
 export default async function SupportPage() {
-  const { data: messages } = await getContactMessage();
-  console.log("Messages:", messages);
+  const { isAuth } = await isAuthenticated();
+  const { data: messages } = await getContactMessage({ isAuth });
+
   return (
     <main className=" min-h-screen bg-background">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">

@@ -7,9 +7,11 @@ import { Input } from "../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormData, LoginSchema } from "@/lib/schema/login-schema";
 import { toast } from "sonner";
-import { LoginAction } from "@/actions/auth-action";
+import { LoginAdminAction } from "@/actions/auth-action";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
   const { handleSubmit, control } = useForm<LoginFormData>({
     mode: "onChange",
     resolver: zodResolver(LoginSchema),
@@ -20,32 +22,24 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
+    try {
+      const result = await LoginAdminAction(data);
 
-    const result = await LoginAction(data);
-    if (result.success) {
+      if (!result || !result.success) {
+        toast.error(result?.message || "Login failed");
+        return;
+      }
+
       toast.success(result.message);
-    } else {
-      toast.error(result.message);
+      router.replace("/admin");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
     }
   };
   return (
-    <Card className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Card className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Controller
             name="email"
             control={control}
@@ -84,7 +78,7 @@ export default function LoginForm() {
               </Field>
             )}
           />
-          <Button>Login</Button>
+          <Button className="mt-8 w-full">Login</Button>
         </form>
       </CardContent>
     </Card>

@@ -1,70 +1,58 @@
-// import { AppError } from "@/types/errors";
-// import { User } from "@/types/user";
-// import bcrypt from "bcryptjs";
-// import { v4 as uuidv4 } from "uuid";
-// import { connectToDatabase } from "@/lib/db";
+import { connectToDatabase } from "@/lib/db";
+import { Admin } from "@/lib/types/login-types";
 
-// type UserData = {
-//   first_name: string;
-//   last_name: string;
-//   email: string;
-//   password: string;
-// };
+export const createAdmin = async (data: Admin) => {
+  const db = await connectToDatabase();
+  const admin = db.collection<Admin>("admin");
 
-// export const createUser = async ({
-//   first_name,
-//   last_name,
-//   email,
-//   password,
-// }: UserData): Promise<User> => {
-//   const client = await connectToDatabase();
-//   const db = client.db("pure-honey");
-//   const users = db.collection<User>("users");
+  const result = await admin.insertOne(data);
 
-//   const existingUser = await users.findOne({ email });
-//   if (existingUser) {
-//     throw new AppError("EMAIL_EXISTS", "Email already exists.", 400);
-//   }
+  if (!result.acknowledged) {
+    return { message: "Admin created failed" };
+  }
 
-//   const hashedPassword = await bcrypt.hash(password, 10);
-//   const newUserId = uuidv4();
+  return { message: "Admin created successfully" };
+};
 
-//   const result = await users.insertOne({
-//     userId: newUserId,
-//     first_name,
-//     last_name,
-//     email,
-//     avatar: "",
-//     password: hashedPassword,
-//     role: "user",
-//     created_at: new Date(),
-//     updated_at: new Date(),
-//   });
+export async function getAdmins({ isAuth }: { isAuth: boolean }) {
+  if (!isAuth) {
+    return { success: false, message: "Unauthorized", admins: [] };
+  }
+  const db = await connectToDatabase();
+  const adminCollection = db.collection<Admin>("admin");
 
-//   console.log("Create user result:", result);
+  const adminsData = await adminCollection
+    .find({})
+    .project({ _id: 0 })
+    .toArray();
+  return {
+    success: true,
+    message: "Admins data...",
+    admins: adminsData as Admin[],
+  };
+}
 
-//   if (!result.acknowledged) {
-//     throw new AppError("REGISTRATION_FAILED", "Registration failed", 500);
-//   }
+export async function getAdminById(adminId: string) {
+  const db = await connectToDatabase();
+  const adminCollection = db.collection<Admin>("admin");
 
-//   const insertedUser: User | null = await users.findOne({ userId: newUserId });
+  const admin = await adminCollection.findOne(
+    { id: adminId },
+    { projection: { _id: 0 } }
+  );
 
-//   if (!insertedUser) {
-//     throw new AppError(
-//       "USER_NOT_FOUND",
-//       "Could not retrieve inserted user",
-//       500
-//     );
-//   }
+  return admin;
+}
 
-//   return insertedUser;
-// };
+export async function deleteAdmin(adminId: string) {
+  const db = await connectToDatabase();
+  const adminCollection = db.collection<Admin>("admin");
+  console.log("Admin ID:", adminId);
 
-// export async function getUserById(userId: string) {
-//   const db = await connectToDatabase();
-//   const users = db.collection<User>("users");
-
-//   const user = await users.findOne({ userId }, { projection: { _id: 0 } });
-
-//   return user;
-// }
+  const result = await adminCollection.deleteOne({ id: adminId });
+  console.log("Result:", result);
+  if (!result.acknowledged) {
+    return { message: "Admin deletion failed" };
+  }
+  return { message: "Admin deletion successfull" };
+}

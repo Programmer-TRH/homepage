@@ -6,6 +6,7 @@ import {
   MessageCircleMore,
   MessagesSquare,
   Newspaper,
+  Users,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -33,6 +34,11 @@ const NavItems = [
     title: "Overview",
     url: "/admin",
     icon: LayoutDashboard,
+  },
+  {
+    title: "Admin Lists",
+    url: "/admin/all-admin",
+    icon: Users,
   },
   {
     title: "News",

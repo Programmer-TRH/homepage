@@ -1,14 +1,12 @@
-// actions/deleteCloudinaryImage.ts
 "use server";
 
 export async function deleteCloudinaryImage(publicId: string) {
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!;
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME!;
   const apiKey = process.env.CLOUDINARY_API_KEY!;
   const apiSecret = process.env.CLOUDINARY_API_SECRET!;
 
   const timestamp = Math.floor(Date.now() / 1000);
 
-  // Signature required for Admin API
   const crypto = require("crypto");
   const stringToSign = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
   const signature = crypto

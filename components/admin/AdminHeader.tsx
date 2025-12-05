@@ -1,6 +1,6 @@
 import { Separator } from "../ui/separator";
 import { SidebarTrigger } from "../ui/sidebar";
-import { NavUser } from "./NavUser";
+import { NavAdmin } from "./NavUser";
 
 export default function AdminHeader() {
   return (
@@ -12,7 +12,7 @@ export default function AdminHeader() {
           className="mr-2 data-[orientation=vertical]:h-6"
         />
       </div>
-      <NavUser />
+      <NavAdmin />
     </header>
   );
 }

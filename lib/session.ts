@@ -8,7 +8,7 @@ if (!secretKey) throw new Error("SESSION_SECRET is not defined");
 const encodedKey = new TextEncoder().encode(secretKey);
 
 export interface TokenPayload extends JWTPayload {
-  userId: string;
+  id: string;
   role: string;
   tokenType: "access" | "refresh";
   jti: string;
@@ -55,16 +55,16 @@ const blacklistedTokens = new Set<string>();
 /**
  * Create access + refresh tokens
  */
-export async function createToken(userId: string, role: string) {
-  console.log("UserId:", userId, "Role:", role);
+export async function createToken(id: string, role: string) {
+  console.log("id:", id, "Role:", role);
   const jti = crypto.randomUUID();
 
   const accessToken = await encrypt(
-    { userId, role, tokenType: "access", jti },
+    { id, role, tokenType: "access", jti },
     "15m"
   );
   const refreshToken = await encrypt(
-    { userId, role, tokenType: "refresh", jti },
+    { id, role, tokenType: "refresh", jti },
     "7d"
   );
 
@@ -107,7 +107,7 @@ export async function updateToken(
   blacklistedTokens.add(payload.jti);
 
   // Issue new tokens
-  await createToken(payload.userId, payload.role);
+  await createToken(payload.id, payload.role);
 
   // Re-read updated cookies
   const newCookies = await cookies();
