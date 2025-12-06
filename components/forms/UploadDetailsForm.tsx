@@ -20,6 +20,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { UploadDetailsAction } from "@/actions/request-action";
+import { Spinner } from "../ui/spinner";
 
 export default function UploadDetailsForm() {
   const form = useForm<QuoteDetailsUploadFormData>({
@@ -43,19 +44,13 @@ export default function UploadDetailsForm() {
       formData.append("images", image);
     });
 
-    try {
-      const result = await UploadDetailsAction(formData);
-      if (!result.success) {
-        toast.error(result.message);
-        return;
-      }
-      toast.success(result.message);
-      form.reset();
-    } catch (error) {
-      toast.error(`Upload failed: ${(error as Error).message}`);
-
-      console.error("Upload error:", error);
+    const result = await UploadDetailsAction(formData);
+    if (!result.success) {
+      toast.error(result.message);
+      return;
     }
+    toast.success(result.message);
+    form.reset();
   };
 
   return (
@@ -271,8 +266,12 @@ export default function UploadDetailsForm() {
           type="submit"
           form="upload-form"
           className="w-full mt-6 bg-[#c4a564] hover:bg-[#b39556] text-white font-bold py-3 px-6 rounded-lg transition duration-200"
+          disabled={form.formState.isSubmitting}
         >
-          Continue
+          {form.formState.isSubmitting && <Spinner />}
+          <span aria-live="polite">
+            {form.formState.isSubmitting ? " Processing " : " Continue"}
+          </span>
         </Button>
       </div>
     </section>

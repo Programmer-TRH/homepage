@@ -1,3 +1,4 @@
+import DeleteSupportMessageButton from "@/components/admin/mesages/DeleteSupportMessageButton";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -10,7 +11,7 @@ import {
 import { isAuthenticated } from "@/dal/isAuthenticated";
 import { FormatDateTime } from "@/lib/format-date-time";
 import { getContactMessage } from "@/services/contact";
-import { Eye, Trash2 } from "lucide-react";
+import { Eye } from "lucide-react";
 
 export default async function SupportPage() {
   const { isAuth } = await isAuthenticated();
@@ -56,9 +57,7 @@ export default async function SupportPage() {
                           <Button size="sm" variant="ghost">
                             <Eye size={16} />
                           </Button>
-                          <Button size="sm" variant="ghost">
-                            <Trash2 size={16} className="text-destructive" />
-                          </Button>
+                          <DeleteSupportMessageButton messageId={message.id} />
                         </div>
                       </TableCell>
                     </TableRow>

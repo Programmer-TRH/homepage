@@ -1,7 +1,6 @@
 import ContactFAQ from "@/components/layout/contact/ContactFAQ";
 import ContactHero from "@/components/layout/contact/ContactHero";
 import ContactSection from "@/components/layout/contact/ContactSection";
-import React from "react";
 
 export default function ContactPage() {
   return (

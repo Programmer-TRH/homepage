@@ -12,9 +12,15 @@ import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createContactMessageAction } from "@/actions/contact";
+import { Spinner } from "../ui/spinner";
 
 export default function ContactForm() {
-  const { handleSubmit, control } = useForm<ContactMessageFormData>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting },
+    reset,
+  } = useForm<ContactMessageFormData>({
     mode: "onChange",
     resolver: zodResolver(ContactMessageSchema),
     defaultValues: {
@@ -25,33 +31,20 @@ export default function ContactForm() {
       status: "new",
     },
   });
-
   const router = useRouter();
 
   const onSubmit = async (data: ContactMessageFormData) => {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
-
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     const result = await createContactMessageAction(data);
-    if (result.success) {
-      toast.success(result.message);
-      router.push("/confirm-request");
-    } else {
+    if (!result.success) {
       toast.error(result.message);
+      return;
     }
+    toast.success(result.message);
+    reset();
+    router.push("/confirm-request");
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black ">
       <FieldGroup>
@@ -125,8 +118,14 @@ export default function ContactForm() {
         />
       </FieldGroup>
 
-      <Button className="w-full bg-[#c4a564] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#b89456] transition">
-        SUBMIT
+      <Button
+        className="w-full bg-[#c4a564] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#b89456] transition"
+        disabled={isSubmitting}
+      >
+        {isSubmitting && <Spinner />}
+        <span aria-live="polite">
+          {isSubmitting ? " Processing " : " SUBMIT"}
+        </span>
       </Button>
     </form>
   );

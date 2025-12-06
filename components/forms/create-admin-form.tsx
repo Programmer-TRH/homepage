@@ -27,12 +27,18 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "../ui/input-group";
+import { Spinner } from "../ui/spinner";
 
 export default function CreateAdminForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const router = useRouter();
-  const { handleSubmit, control, reset } = useForm<CreateAdminFormData>({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<CreateAdminFormData>({
     mode: "onChange",
     resolver: zodResolver(CreateAdminSchema),
     defaultValues: {
@@ -43,19 +49,15 @@ export default function CreateAdminForm() {
   });
 
   const onSubmit = async (data: CreateAdminFormData) => {
-    try {
-      const result = await CreateAdminAction(data);
-      if (!result.success) {
-        toast.error(result.message);
-        return;
-      }
-      reset();
-      setOpen(false);
-      toast.success(result.message);
-      router.push("/admin/all-admin");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
+    const result = await CreateAdminAction(data);
+    if (!result.success) {
+      toast.error(result.message);
+      return;
     }
+    reset();
+    setOpen(false);
+    toast.success(result.message);
+    router.refresh();
   };
 
   const handleShowPassword = () => {
@@ -148,7 +150,12 @@ export default function CreateAdminForm() {
               </Field>
             )}
           />
-          <Button className="mt-8 w-full">Confirm</Button>
+          <Button className="mt-8 w-full" disabled={isSubmitting}>
+            {isSubmitting && <Spinner />}
+            <span aria-live="polite">
+              {isSubmitting ? " Processing " : " Confirm"}
+            </span>
+          </Button>
         </form>
       </DialogContent>
     </Dialog>

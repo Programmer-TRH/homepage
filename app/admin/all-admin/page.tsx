@@ -1,4 +1,4 @@
-import DeleteButton from "@/components/admin/all-admin/DeleteButton";
+import DeleteAdminButton from "@/components/admin/all-admin/DeleteButton";
 import CreateAdminForm from "@/components/forms/create-admin-form";
 import {
   Table,
@@ -50,7 +50,7 @@ export default async function AllAdminPage() {
                       </TableCell>
                       {admin.id !== id && (
                         <TableCell className="text-right">
-                          <DeleteButton adminId={admin.id} />
+                          <DeleteAdminButton adminId={admin.id} />
                         </TableCell>
                       )}
                     </TableRow>

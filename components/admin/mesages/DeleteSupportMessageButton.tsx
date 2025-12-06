@@ -1,5 +1,5 @@
 "use client";
-import { DeleteRequestAction } from "@/actions/request-action";
+import { deleteContactMessage } from "@/actions/contact";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -17,19 +17,20 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 
-export default function DeleteRequestButton({
-  requestId,
+export default function DeleteSupportMessageButton({
+  messageId,
 }: {
-  requestId: string;
+  messageId: string;
 }) {
-  const [isOpen, setOpen] = useState(false);
   const router = useRouter();
+  const [isOpen, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const handleDelete = () => {
     startTransition(async () => {
-      const result = await DeleteRequestAction(requestId);
+      const result = await deleteContactMessage(messageId);
       if (!result.success) {
         toast.error(result.message);
+
         return;
       }
       toast.success(result.message);

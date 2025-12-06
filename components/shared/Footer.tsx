@@ -29,7 +29,7 @@ export default function Footer() {
                 alt="Logo"
                 width={1080}
                 height={720}
-                className="w-32 h-20 sm:w-44 sm:h-26"
+                className="w-40 sm:w-52 h-auto "
               />
             </div>
             <p className="text-xs text-gray-500 text-center">

@@ -9,10 +9,16 @@ import { LoginFormData, LoginSchema } from "@/lib/schema/login-schema";
 import { toast } from "sonner";
 import { LoginAdminAction } from "@/actions/auth-action";
 import { useRouter } from "next/navigation";
+import { Spinner } from "../ui/spinner";
 
 export default function LoginForm() {
   const router = useRouter();
-  const { handleSubmit, control } = useForm<LoginFormData>({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<LoginFormData>({
     mode: "onChange",
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -22,20 +28,17 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    try {
-      const result = await LoginAdminAction(data);
+    const result = await LoginAdminAction(data);
 
-      if (!result || !result.success) {
-        toast.error(result?.message || "Login failed");
-        return;
-      }
-
-      toast.success(result.message);
-      router.replace("/admin");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
+    if (!result || !result.success) {
+      toast.error(result?.message || "Login failed");
+      return;
     }
+    reset();
+    toast.success(result.message);
+    router.replace("/admin");
   };
+
   return (
     <Card className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CardContent>
@@ -78,7 +81,12 @@ export default function LoginForm() {
               </Field>
             )}
           />
-          <Button className="mt-8 w-full">Login</Button>
+          <Button className="mt-8 w-full" disabled={isSubmitting}>
+            {isSubmitting && <Spinner />}
+            <span aria-live="polite">
+              {isSubmitting ? " Processing " : " SUBMIT"}
+            </span>
+          </Button>
         </form>
       </CardContent>
     </Card>

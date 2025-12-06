@@ -5,7 +5,10 @@ import {
   ContactMessageSchema,
 } from "@/lib/schema/contact-schema";
 import { ContactMessage } from "@/lib/types/messages-types";
-import { createContactMessage } from "@/services/contact";
+import {
+  createContactMessage,
+  deleteContactMessageService,
+} from "@/services/contact";
 
 export async function createContactMessageAction(
   formData: ContactMessageFormData
@@ -28,5 +31,17 @@ export async function createContactMessageAction(
     return { success: true, message: result.message };
   } catch (error) {
     return { success: false, message: (error as Error).message };
+  }
+}
+
+export async function deleteContactMessage(messageId: string) {
+  try {
+    const result = await deleteContactMessageService(messageId);
+    return { success: true, message: result.message };
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as Error).message || "Server error",
+    };
   }
 }
