@@ -58,6 +58,7 @@ export default function ContactForm() {
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter your name"
+                className="border-gray-400 placeholder:text-gray-500"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -75,6 +76,7 @@ export default function ContactForm() {
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter your email"
+                className="border-gray-400 placeholder:text-gray-500"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -92,6 +94,7 @@ export default function ContactForm() {
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter subject here"
+                className="border-gray-400 placeholder:text-gray-500"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -109,6 +112,7 @@ export default function ContactForm() {
                 id={field.name}
                 aria-invalid={fieldState.invalid}
                 placeholder="Enter your message"
+                className="border-gray-400 placeholder:text-gray-500"
               />
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -123,7 +127,7 @@ export default function ContactForm() {
       >
         {isSubmitting && <Spinner />}
         <span aria-live="polite">
-          {isSubmitting ? " Processing " : " SUBMIT"}
+          {isSubmitting ? " Processing " : " Submit"}
         </span>
       </Button>
     </form>

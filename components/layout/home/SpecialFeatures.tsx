@@ -1,4 +1,86 @@
+// export default function SpecialFeatures() {
+//   const features = [
+//     {
+//       title: "Industry Leaders",
+//       description:
+//         "We have been buying gold and silver for over 15 years, establishing ourselves as one of the UK's most trusted precious metal buyers.",
+//     },
+//     {
+//       title: "Best Market Rates",
+//       description:
+//         "Our prices are based on live market rates, ensuring you always receive a fair and competitive price for your precious metals.",
+//     },
+//     {
+//       title: "Secure & Confidential",
+//       description:
+//         "All transactions are conducted with the highest level of security and confidentiality. Your privacy is our priority.",
+//     },
+//     {
+//       title: "Instant Payment",
+//       description:
+//         "Walk in and walk out with cash in hand, or receive payment via bank transfer within 24 hours of valuation.",
+//     },
+//     {
+//       title: "No Hidden Fees",
+//       description:
+//         "What we quote is what you get. No deductions, no surprises, no hidden charges. Complete transparency guaranteed.",
+//     },
+//     {
+//       title: "Expert Appraisers",
+//       description:
+//         "Our certified experts have decades of combined experience in precious metals valuation and authentication.",
+//     },
+//   ];
+
+//   return (
+//     <section className="bg-[#1a1d24] py-16 md:py-24">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+//           What&apos;s Great About Us
+//         </h2>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//           {features.map((feature, index) => (
+//             <div
+//               key={index}
+//               className="bg-[#26292e] rounded-lg p-6 border border-[#2d3748]"
+//             >
+//               <h3 className="text-lg font-bold text-[#fbbf24] mb-3">
+//                 {feature.title}
+//               </h3>
+//               <p className="text-gray-400 text-sm leading-relaxed">
+//                 {feature.description}
+//               </p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+"use client";
+import { useReveal } from "@/hooks/use-reveal";
+
 export default function SpecialFeatures() {
+  const { ref, show } = useReveal();
+
+  const feature1 = useReveal();
+  const feature2 = useReveal();
+  const feature3 = useReveal();
+  const feature4 = useReveal();
+  const feature5 = useReveal();
+  const feature6 = useReveal();
+
+  const featureRefs = [
+    feature1,
+    feature2,
+    feature3,
+    feature4,
+    feature5,
+    feature6,
+  ];
+
   const features = [
     {
       title: "Industry Leaders",
@@ -33,26 +115,37 @@ export default function SpecialFeatures() {
   ];
 
   return (
-    <section className="bg-[#1a1d24] py-16 md:py-24">
+    <section ref={ref} className="bg-[#1a1d24] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+        <h2
+          className={`text-3xl md:text-4xl font-bold text-white text-center mb-16 reveal-base reveal-up ${
+            show ? "reveal-show" : ""
+          }`}
+        >
           What&apos;s Great About Us
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-[#26292e] rounded-lg p-6 border border-[#2d3748]"
-            >
-              <h3 className="text-lg font-bold text-[#fbbf24] mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+          {features.map((feature, i) => {
+            const fRef = featureRefs[i];
+            return (
+              <div
+                key={i}
+                ref={fRef.ref}
+                className={`bg-[#26292e] rounded-lg p-6 border border-[#2d3748] reveal-base reveal-up ${
+                  fRef.show ? "reveal-show" : ""
+                }`}
+                style={{ transitionDelay: `${0.1 + i * 0.1}s` }}
+              >
+                <h3 className="text-lg font-bold text-[#fbbf24] mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -375,3 +375,32 @@
     }
   }
 }
+
+@layer utilities {
+  .reveal-base {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-up {
+    transform: translateY(20px);
+  }
+  .reveal-down {
+    transform: translateY(-20px);
+  }
+  .reveal-left {
+    transform: translateX(-20px);
+  }
+  .reveal-right {
+    transform: translateX(20px);
+  }
+  .reveal-scale {
+    transform: scale(0.95);
+  }
+
+  .reveal-show {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
