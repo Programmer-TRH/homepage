@@ -1,164 +1,17 @@
+import { fetchMetalPrices } from "@/services/price-service";
+
 export default async function PricingTable() {
-  const goldCoins = [
-    { size: "9ct", price: "£31.48" },
-    { size: "14ct", price: "£69.62" },
-    { size: "18ct", price: "£83.35" },
-  ];
-
-  const goldBars = [
-    { size: "20ct", price: "£70.36" },
-    { size: "22ct", price: "£77.38" },
-    { size: "24ct", price: "£84.47" },
-  ];
-
-  const silverCoins = [
-    { size: "925", price: "£0.58" },
-    { size: "999", price: "£0.63" },
-  ];
-
-  const silverBars = [
-    { size: "950", price: "£30.73" },
-    { size: "999", price: "£32.32" },
-  ];
-
+  const data = await fetchMetalPrices();
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* GOLD COINS */}
-          <div>
-            <h3 className="bg-linear-to-l from-[#ceb04e] to-[#c4a352] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
-              GOLD COINS
-            </h3>
-            <table className="w-full border border-gray-300 text-background">
-              <thead>
-                <tr>
-                  {goldCoins.map((item) => (
-                    <th
-                      key={item.size}
-                      className="bg-gray-50 border border-gray-300 py-2 px-2 text-xs sm:text-sm font-semibold text-left"
-                    >
-                      {item.size}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {goldCoins.map((item) => (
-                    <td
-                      key={item.size}
-                      className="border border-gray-300 py-2 px-2 text-xs sm:text-base font-medium"
-                    >
-                      {item.price}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* GOLD BARS */}
-          <div>
-            <h3 className="bg-linear-to-l from-[#ceb04e] to-[#c4a352] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
-              GOLD BARS
-            </h3>
-            <table className="w-full border border-gray-300 text-background">
-              <thead>
-                <tr>
-                  {goldBars.map((item) => (
-                    <th
-                      key={item.size}
-                      className="bg-gray-50 border border-gray-300 py-2 px-2 text-xs sm:text-sm font-semibold text-left"
-                    >
-                      {item.size}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {goldBars.map((item) => (
-                    <td
-                      key={item.size}
-                      className="border border-gray-300 py-2 px-2 text-xs sm:text-base font-medium"
-                    >
-                      {item.price}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* SILVER COINS */}
-          <div>
-            <h3 className="bg-linear-to-l from-[#bdbdbd] to-[#a9a9a9] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
-              SILVER COINS
-            </h3>
-            <table className="w-full border  border-gray-300 text-background">
-              <thead>
-                <tr>
-                  {silverCoins.map((item) => (
-                    <th
-                      key={item.size}
-                      className="bg-gray-50 border border-gray-300 py-2 px-2 text-xs sm:text-sm font-semibold text-left"
-                    >
-                      {item.size}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {silverCoins.map((item) => (
-                    <td
-                      key={item.size}
-                      className="border border-gray-300 py-2 px-2 text-xs sm:text-base font-medium"
-                    >
-                      {item.price}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* SILVER BARS */}
-          <div>
-            <h3 className="bg-linear-to-l from-[#bdbdbd] to-[#aaaaaa] text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md">
-              SILVER BARS
-            </h3>
-            <table className="w-full border border-gray-300 text-background">
-              <thead>
-                <tr>
-                  {silverBars.map((item) => (
-                    <th
-                      key={item.size}
-                      className="bg-gray-50 border border-gray-300 py-2 px-2 text-xs sm:text-sm font-semibold text-left"
-                    >
-                      {item.size}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {silverBars.map((item) => (
-                    <td
-                      key={item.size}
-                      className="border border-gray-300 py-2 px-2 text-xs sm:text-base font-medium"
-                    >
-                      {item.price}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <PriceTableSection title="GOLD COINS" items={data.goldCoins} />
+          <PriceTableSection title="GOLD BARS" items={data.goldBars} />
+          <PriceTableSection title="SILVER COINS" items={data.silverCoins} />
+          <PriceTableSection title="SILVER BARS" items={data.silverBars} />
         </div>
 
-        {/* Disclaimer and CTA */}
         <div className="text-center mt-10">
           <p className="text-sm text-gray-500 mb-4">
             These are today&apos;s prices per ounce.
@@ -176,5 +29,53 @@ export default async function PricingTable() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PriceTableSection({
+  title,
+  items,
+}: {
+  title: string;
+  items: { size: string; pricePerOunce: number }[];
+}) {
+  return (
+    <div>
+      <h3
+        className={`${
+          title.includes("GOLD")
+            ? "bg-linear-to-l from-[#ceb04e] to-[#c4a352]"
+            : "bg-linear-to-l from-[#bdbdbd] to-[#a9a9a9]"
+        } text-black font-bold py-3 px-4 text-center text-sm sm:text-base rounded-t-md`}
+      >
+        {title}
+      </h3>
+      <table className="w-full border border-gray-300 text-background">
+        <thead>
+          <tr>
+            {items.map((item) => (
+              <th
+                key={item.size}
+                className="bg-gray-50 border border-gray-300 py-2 px-2 text-xs sm:text-sm font-semibold text-left"
+              >
+                {item.size}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {items.map((item) => (
+              <td
+                key={item.size}
+                className="border border-gray-300 py-2 px-2 text-xs sm:text-base font-medium"
+              >
+                £{item.pricePerOunce.toFixed(2)}
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }

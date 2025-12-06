@@ -1,28 +1,28 @@
-import * as cheerio from "cheerio";
+"use server";
 
-export async function getScrapPrices() {
-  const res = await fetch("https://www.webuyanygold.com/");
-  const html = await res.text();
-  console.log("HTML:", html);
-  const $ = cheerio.load(html);
+import {
+  goldBars,
+  goldCoins,
+  QuoteItem,
+  silverBars,
+  silverCoins,
+} from "@/lib/data/QuoteItems";
+import { fetchMetalApiPrices } from "@/services/price-service";
 
-  function extractPrice(label: string) {
-    const row = $("tr:contains('" + label + "')");
-    return row.find("td").eq(1).text().trim(); // includes £
+export async function getQuotePrices(): Promise<Record<string, number>> {
+  const metalData = await fetchMetalApiPrices();
+  console.log("Metal Data:", metalData);
+  const allItems: QuoteItem[] = [
+    ...goldCoins,
+    ...goldBars,
+    ...silverCoins,
+    ...silverBars,
+  ];
+
+  const priceMap: Record<string, number> = {};
+  for (const item of allItems) {
+    priceMap[item.id] = metalData[item.id] ?? 0;
   }
 
-  return {
-    goldBars: [
-      { size: "9ct", price: extractPrice("9ct") },
-      { size: "14ct", price: extractPrice("14ct") },
-      { size: "18ct", price: extractPrice("18ct") },
-      { size: "20ct", price: extractPrice("20ct") },
-      { size: "22ct", price: extractPrice("22ct") },
-      { size: "24ct", price: extractPrice("24ct") },
-    ],
-    silverBars: [
-      { size: "925", price: extractPrice("925") },
-      { size: "999", price: extractPrice("999") },
-    ],
-  };
+  return priceMap;
 }
