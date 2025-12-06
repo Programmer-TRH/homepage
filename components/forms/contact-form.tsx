@@ -34,7 +34,6 @@ export default function ContactForm() {
   const router = useRouter();
 
   const onSubmit = async (data: ContactMessageFormData) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     const result = await createContactMessageAction(data);
     if (!result.success) {
       toast.error(result.message);

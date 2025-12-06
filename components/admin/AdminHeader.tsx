@@ -4,7 +4,7 @@ import { NavAdmin } from "./NavUser";
 
 export default function AdminHeader() {
   return (
-    <header className="w-full flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4 border-b ">
+    <header className="w-full flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4 border-b sticky top-0 right-0 bg-background ">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-1" />
         <Separator

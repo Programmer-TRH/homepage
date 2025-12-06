@@ -17,6 +17,10 @@ export const items = [
   { id: "silverCoins", label: "Silver Coins" },
 ] as const;
 
+export const itemLabelMap = Object.fromEntries(
+  items.map((i) => [i.id.toLowerCase(), i.label])
+) as Record<string, string>;
+
 export const InstantSellRequestSchema = z.object({
   items: z
     .array(z.string())

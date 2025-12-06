@@ -1,20 +1,20 @@
 "use server";
 import { v4 as uuidv4 } from "uuid";
 import {
-  ContactMessageFormData,
-  ContactMessageSchema,
+  InstantSellRequestFormData,
+  InstantSellRequestSchema,
 } from "@/lib/schema/contact-schema";
-import { ContactMessage } from "@/lib/types/messages-types";
+import { InstantSellRequest } from "@/lib/types/messages-types";
 import {
-  createContactMessage,
-  deleteContactMessageService,
-  updateContactStatusService,
-} from "@/services/contact";
+  createInstantSellMessageService,
+  deleteInstantSellMessageService,
+  updateInstantSellStatusService,
+} from "@/services/instant-sell-service";
 
-export async function createContactMessageAction(
-  formData: ContactMessageFormData
+export async function createInstantSellMessageAction(
+  formData: InstantSellRequestFormData
 ) {
-  const parsed = ContactMessageSchema.safeParse(formData);
+  const parsed = InstantSellRequestSchema.safeParse(formData);
 
   if (!parsed.success) {
     const firstError = parsed.error.issues[0];
@@ -22,20 +22,20 @@ export async function createContactMessageAction(
   }
 
   try {
-    const contactMessage: ContactMessage = {
+    const contactMessage: InstantSellRequest = {
       id: uuidv4(),
       ...parsed.data,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    const result = await createContactMessage(contactMessage);
+    const result = await createInstantSellMessageService(contactMessage);
     return { success: true, message: result.message };
   } catch (error) {
     return { success: false, message: (error as Error).message };
   }
 }
 
-export async function updateContactStatus({
+export async function updateInstantSellStatus({
   messageId,
   status,
 }: {
@@ -43,7 +43,7 @@ export async function updateContactStatus({
   status: string;
 }) {
   try {
-    const result = await updateContactStatusService({ messageId, status });
+    const result = await updateInstantSellStatusService({ messageId, status });
     return { success: true, message: result.message };
   } catch (error) {
     return {
@@ -53,9 +53,9 @@ export async function updateContactStatus({
   }
 }
 
-export async function deleteContactMessage(messageId: string) {
+export async function deleteInstantSellMessage(messageId: string) {
   try {
-    const result = await deleteContactMessageService(messageId);
+    const result = await deleteInstantSellMessageService(messageId);
     return { success: true, message: result.message };
   } catch (error) {
     return {

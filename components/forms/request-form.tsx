@@ -21,10 +21,17 @@ import {
   SelectValue,
 } from "../ui/select";
 import { cn } from "@/lib/utils";
+import { createInstantSellMessageAction } from "@/actions/instant-sell-action";
+import { Spinner } from "../ui/spinner";
 
 export default function InstantSellRequestForm() {
   const router = useRouter();
-  const { handleSubmit, control } = useForm<InstantSellRequestFormData>({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<InstantSellRequestFormData>({
     mode: "onChange",
     resolver: zodResolver(InstantSellRequestSchema),
     defaultValues: {
@@ -38,20 +45,13 @@ export default function InstantSellRequestForm() {
   });
 
   const onSubmit = async (data: InstantSellRequestFormData) => {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
+    const result = await createInstantSellMessageAction(data);
+    if (!result.success) {
+      toast.error(result.message);
+      return;
+    }
+    toast.success(result.message);
+    reset();
     router.push("/confirm-request");
   };
 
@@ -62,7 +62,7 @@ export default function InstantSellRequestForm() {
           name="items"
           control={control}
           render={({ field, fieldState }) => (
-            <div className="bg-[#1a1f2e] rounded-lg p-6 mb-8 border border-[#2d3748]">
+            <div className="bg-[#1a1f2e] rounded-lg p-6 mb-6 border border-[#2d3748]">
               <p className="text-[#fbbf24] font-semibold mb-4">
                 What would you like to sell?
               </p>
@@ -191,8 +191,12 @@ export default function InstantSellRequestForm() {
         size={"lg"}
         type="submit"
         className="w-full bg-[#fbbf24] text-black rounded-lg font-semibold hover:bg-[#f59e0b] transition"
+        disabled={isSubmitting}
       >
-        Submit
+        {isSubmitting && <Spinner />}
+        <span aria-live="polite">
+          {isSubmitting ? " Processing " : " Submit"}
+        </span>
       </Button>
     </form>
   );

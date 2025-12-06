@@ -13,7 +13,7 @@ export interface UploadDetails {
 
 export interface InstantSellRequest {
   id: string;
-  items: [];
+  items: string[];
   name: string;
   email: string;
   phone: string;

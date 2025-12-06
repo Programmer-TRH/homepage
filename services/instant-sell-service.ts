@@ -1,16 +1,22 @@
 import { connectToDatabase } from "@/lib/db";
-import { ContactMessage } from "@/lib/types/messages-types";
+import { InstantSellRequest } from "@/lib/types/messages-types";
 
-export async function createContactMessage(data: ContactMessage) {
+export async function createInstantSellMessageService(
+  data: InstantSellRequest
+) {
   const db = await connectToDatabase();
-  const result = await db.collection("contact").insertOne(data);
+  const result = await db.collection("sell-instant").insertOne(data);
   if (!result.insertedId) {
     throw new Error("Message sumition failed");
   }
   return { message: "Message submited successfully." };
 }
 
-export async function getContactMessage({ isAuth }: { isAuth: boolean }) {
+export async function getInstantSellMessageService({
+  isAuth,
+}: {
+  isAuth: boolean;
+}) {
   if (!isAuth) {
     return {
       success: false,
@@ -20,14 +26,14 @@ export async function getContactMessage({ isAuth }: { isAuth: boolean }) {
 
   const db = await connectToDatabase();
   const messages = await db
-    .collection("contact")
+    .collection("sell-instant")
     .find({})
     .project({ _id: 0 })
     .toArray();
-  return { success: true, data: messages as ContactMessage[] };
+  return { success: true, data: messages as InstantSellRequest[] };
 }
 
-export async function updateContactStatusService({
+export async function updateInstantSellStatusService({
   messageId,
   status,
 }: {
@@ -36,7 +42,7 @@ export async function updateContactStatusService({
 }) {
   const db = await connectToDatabase();
   const result = await db
-    .collection("contact")
+    .collection("sell-instant")
     .updateOne({ id: messageId }, { $set: { status } });
   if (result.matchedCount === 0) {
     throw new Error("Request not found");
@@ -49,9 +55,11 @@ export async function updateContactStatusService({
   return { message: "Status updated successfully" };
 }
 
-export async function deleteContactMessageService(messageId: string) {
+export async function deleteInstantSellMessageService(messageId: string) {
   const db = await connectToDatabase();
-  const result = await db.collection("contact").deleteOne({ id: messageId });
+  const result = await db
+    .collection("sell-instant")
+    .deleteOne({ id: messageId });
   if (result.deletedCount === 0) {
     throw new Error("Contact message delete failed");
   }

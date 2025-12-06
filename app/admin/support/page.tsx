@@ -1,5 +1,7 @@
 import DeleteSupportMessageButton from "@/components/admin/mesages/DeleteSupportMessageButton";
-import { Button } from "@/components/ui/button";
+import { statusColorMap } from "@/components/shared/status-color-map";
+import ViewSupport from "@/components/shared/view/view-support";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -11,7 +13,6 @@ import {
 import { isAuthenticated } from "@/dal/isAuthenticated";
 import { FormatDateTime } from "@/lib/format-date-time";
 import { getContactMessage } from "@/services/contact";
-import { Eye } from "lucide-react";
 
 export default async function SupportPage() {
   const { isAuth } = await isAuthenticated();
@@ -48,15 +49,20 @@ export default async function SupportPage() {
                       <TableCell>{message.email}</TableCell>
                       <TableCell>{message.subject}</TableCell>
                       <TableCell>{message.message}</TableCell>
-                      <TableCell>{message.status}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant="outline"
+                          className={statusColorMap[message.status] || ""}
+                        >
+                          {message.status}
+                        </Badge>
+                      </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {FormatDateTime(message.createdAt)}
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button size="sm" variant="ghost">
-                            <Eye size={16} />
-                          </Button>
+                          <ViewSupport message={message} />
                           <DeleteSupportMessageButton messageId={message.id} />
                         </div>
                       </TableCell>

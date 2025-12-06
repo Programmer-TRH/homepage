@@ -5,6 +5,7 @@ import { QuoteDetailsUploadSchema } from "@/lib/schema/contact-schema";
 import { UploadDetails } from "@/lib/types/messages-types";
 import {
   DeleteDetailsService,
+  updateSellRequestStatusService,
   UploadDetailsService,
 } from "@/services/request-service";
 import {
@@ -49,6 +50,24 @@ export async function UploadDetailsAction(formData: FormData) {
     return { success: true, message: result.message };
   } catch (error) {
     return { success: false, message: (error as Error).message };
+  }
+}
+
+export async function updateSellRequestStatus({
+  requestId,
+  status,
+}: {
+  requestId: string;
+  status: string;
+}) {
+  try {
+    const result = await updateSellRequestStatusService({ requestId, status });
+    return { success: true, message: result.message };
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as Error).message || "Server error",
+    };
   }
 }
 

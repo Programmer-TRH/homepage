@@ -1,5 +1,7 @@
 import DeleteRequestButton from "@/components/admin/mesages/DeleteRequestButton";
-import { Button } from "@/components/ui/button";
+import { statusColorMap } from "@/components/shared/status-color-map";
+import ViewSellRequest from "@/components/shared/view/view-sell-request";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -11,7 +13,6 @@ import {
 import { isAuthenticated } from "@/dal/isAuthenticated";
 import { FormatDateTime } from "@/lib/format-date-time";
 import { getRequestService } from "@/services/request-service";
-import { Eye } from "lucide-react";
 import Image from "next/image";
 
 export default async function SellRequestPage() {
@@ -57,16 +58,20 @@ export default async function SellRequestPage() {
                       </TableCell>
                       <TableCell>{message.email}</TableCell>
                       <TableCell>{message.phone}</TableCell>
-
-                      <TableCell>{message.status}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant="outline"
+                          className={statusColorMap[message.status] || ""}
+                        >
+                          {message.status}
+                        </Badge>
+                      </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {FormatDateTime(message.createdAt)}
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button size="sm" variant="ghost">
-                            <Eye size={16} />
-                          </Button>
+                          <ViewSellRequest request={message} />
                           <DeleteRequestButton requestId={message.id} />
                         </div>
                       </TableCell>

@@ -27,13 +27,35 @@ export async function UploadDetailsService(data: UploadDetails) {
   return { message: "Request submited successfully." };
 }
 
+export async function updateSellRequestStatusService({
+  requestId,
+  status,
+}: {
+  requestId: string;
+  status: string;
+}) {
+  const db = await connectToDatabase();
+  const result = await db
+    .collection("sell-request")
+    .updateOne({ id: requestId }, { $set: { status } });
+  if (result.matchedCount === 0) {
+    throw new Error("Request not found");
+  }
+
+  if (result.modifiedCount === 0) {
+    return { message: "Status already up-to-date" };
+  }
+
+  return { message: "Status updated successfully" };
+}
+
 export async function DeleteDetailsService(requestId: string) {
   const db = await connectToDatabase();
   const result = await db
     .collection("sell-request")
     .deleteOne({ id: requestId });
 
-  if (!result.acknowledged) {
+  if (result.deletedCount === 0) {
     return { message: "Request not found or already deleted" };
   }
   return { message: "Request deleted successfully" };
